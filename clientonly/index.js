@@ -10,23 +10,28 @@
 	function getServerAddress() {
 		/**
 		 * Get command line parameters
-		 * Assumes that a cmdline parameter is defined with `--key [value]`
-		 * @param {string} key key to look for at the command line
-		 * @param {string} defaultValue value if no key is given at the command line
-		 * @returns {string} the value of the parameter
+		 * This function takes two parameters: the key to look for at the command line, and a default value if no key is given.
+		 * It then searches for the key in the command line arguments, and if it finds it, it returns the value after the key.
+		 * If the key is not found, it returns the default value.
+		 * @param {string} key - the key to look for at the command line
+		 * @param {string} defaultValue - the value to return if the key is not found
+		 * @returns {string} - the value of the parameter
 		 */
 		function getCommandLineParameter(key, defaultValue = undefined) {
+			// Find the index of the key in the command line arguments
 			const index = process.argv.indexOf(`--${key}`);
+			// If the key is found, return the value after it
 			const value = index > -1 ? process.argv[index + 1] : undefined;
+			// If the key is not found, return the default value
 			return value !== undefined ? String(value) : defaultValue;
 		}
 
-		// Prefer command line arguments over environment variables
+		// Get the address and port from the command line, and if they are not provided, get them from the environment variables
 		["address", "port"].forEach((key) => {
 			config[key] = getCommandLineParameter(key, process.env[key.toUpperCase()]);
 		});
 
-		// determine if "--use-tls"-flag was provided
+		// Check if the "--use-tls" flag is provided, and if so, set the tls flag in the config object to true
 		config["tls"] = process.argv.indexOf("--use-tls") > 0;
 	}
 
@@ -60,16 +65,26 @@
 	}
 
 	/**
-	 * Print a message to the console in case of errors
-	 * @param {string} message error message to print
-	 * @param {number} code error code for the exit call
+	 * This function is used to print an error message to the console and terminate the program.
+	 *
+	 * @param {string} message - This is the error message to be printed. If this is omitted or not a string,
+	 *                           a generic error message will be printed.
+	 * @param {number} code - This is the exit code for the program. If this is omitted, the program will exit with code 1.
+	 *                        This is used to indicate the status of the program to the operating system.
+	 *                        A code of 0 indicates success, while any other code indicates failure.
+	 *
+	 * @returns {void} This function does not return anything. Instead, it terminates the program.
 	 */
 	function fail(message, code = 1) {
+		// Check if a message was provided and if it is a string
 		if (message !== undefined && typeof message === "string") {
+			// If a message was provided, print it to the console
 			console.log(message);
 		} else {
+			// If no message was provided or it was not a string, print a generic error message to the console
 			console.log("Usage: 'node clientonly --address 192.168.1.10 --port 8080 [--use-tls]'");
 		}
+		// Terminate the program with the specified exit code
 		process.exit(code);
 	}
 

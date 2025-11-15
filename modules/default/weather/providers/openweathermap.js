@@ -124,6 +124,7 @@ WeatherProvider.register("openweathermap", {
 	 * Generate a WeatherObject based on currentWeatherInformation
 	 */
 	generateWeatherObjectFromCurrentWeather(currentWeatherData) {
+		console.log(currentWeatherData);
 		const currentWeather = new WeatherObject();
 
 		currentWeather.date = moment.unix(currentWeatherData.dt);
