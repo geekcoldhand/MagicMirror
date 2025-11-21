@@ -1,4 +1,5 @@
 "use strict";
+require("module-alias/register"); 
 
 const electron = require("electron");
 const { app, BrowserWindow } = electron;

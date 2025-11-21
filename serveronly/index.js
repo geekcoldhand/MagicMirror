@@ -1,3 +1,4 @@
+require("module-alias/register"); 
 require("console-stamp")(console);
 require("../js/app");
 

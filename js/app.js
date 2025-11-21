@@ -1,3 +1,4 @@
+require("module-alias/register");
 require("console-stamp")(console);
 const Log = require("logger");
 const Server = require("./server");
