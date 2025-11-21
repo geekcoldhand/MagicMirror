@@ -17,6 +17,11 @@
   --gap-body-left: 60px;
   --gap-modules: 30px;
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 html {
   cursor: none;
