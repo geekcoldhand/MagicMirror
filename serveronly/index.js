@@ -1,8 +1,5 @@
-const app = require("../js/app");
-const Log = require("../js/logger");
+require("console-stamp")(console);
+require("../js/app");
 
-app.start().then((config) => {
-	const bindAddress = config.address ? config.address : "localhost";
-	const httpType = config.useHttps ? "https" : "http";
-	Log.log(`\nReady to go! Please point your browser to: ${httpType}://${bindAddress}:${config.port}`);
-});
+console.log("MagicMirror² server-only mode started");
+console.log("Access the mirror at http://localhost:8080");
