@@ -1,24 +1,24 @@
-.calendar .symbol {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  padding-left: 0;
-  padding-right: 10px;
-  font-size: var(--font-size-small);
+.calendar {
+  width: 100%;
+  border-spacing: 0 10px;
 }
 
-.calendar .symbol span {
-  padding-top: 4px;
+.calendar .event {
+  vertical-align: top;
+}
+
+.calendar .symbol {
+  padding-right: 15px;
+  font-size: 20px;
+  width: 30px;
 }
 
 .calendar .title {
-  padding-left: 0;
-  padding-right: 0;
-  vertical-align: top;
+  padding-right: 15px;
+  max-width: 300px;
 }
 
 .calendar .time {
-  padding-left: 30px;
   text-align: right;
-  vertical-align: top;
+  white-space: nowrap;
 }

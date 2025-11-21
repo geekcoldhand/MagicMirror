@@ -4,7 +4,7 @@ Module.register("clock", {
     showDate: true,
     showWeek: false,
     dateFormat: "dddd, LL",
-    timeFormat: config.timeFormat || 12,
+    timeFormat: 12,
     timezone: null,
     displayType: "digital", // digital, analog
     analogSize: "200px",
