@@ -1,57 +1,53 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>MagicMirror²</title>
-    <meta name="google" content="notranslate" />
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="mobile-web-app-capable" content="yes" />
-
-    <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
-    <link rel="stylesheet" type="text/css" href="css/main.css" />
-    <link rel="stylesheet" type="text/css" href="fonts/roboto.css" />
-    <!-- custom.css is loaded by the loader.js to make sure it's loaded after the module css files. -->
-
-    <script type="text/javascript">
-      window.mmVersion = "#VERSION#";
-    </script>
-  </head>
-  <body>
-    <div class="region fullscreen below"><div class="container"></div></div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MagicMirror²</title>
+  
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/custom.css">
+  
+</head>
+<body>
+  <div class="container">
     <div class="region top bar">
-      <div class="container"></div>
-      <div class="region top left"><div class="container"></div></div>
-      <div class="region top center"><div class="container"></div></div>
-      <div class="region top right"><div class="container"></div></div>
+      <div class="region top_bar"></div>
     </div>
-    <div class="region upper third"><div class="container"></div></div>
-    <div class="region middle center"><div class="container"></div></div>
-    <div class="region lower third">
-      <div class="container"><br /></div>
+    
+    <div class="region top">
+      <div class="region top_left"></div>
+      <div class="region top_center"></div>
+      <div class="region top_right"></div>
     </div>
+    
+    <div class="region upper">
+      <div class="region upper_third"></div>
+    </div>
+    
+    <div class="region middle">
+      <div class="region middle_center"></div>
+    </div>
+    
+    <div class="region lower">
+      <div class="region lower_third"></div>
+    </div>
+    
+    <div class="region bottom">
+      <div class="region bottom_left"></div>
+      <div class="region bottom_center"></div>
+      <div class="region bottom_right"></div>
+    </div>
+    
     <div class="region bottom bar">
-      <div class="container"></div>
-      <div class="region bottom left"><div class="container"></div></div>
-      <div class="region bottom center"><div class="container"></div></div>
-      <div class="region bottom right"><div class="container"></div></div>
+      <div class="region bottom_bar"></div>
     </div>
-    <div class="region fullscreen above"><div class="container"></div></div>
-    <script type="text/javascript" src="socket.io/socket.io.js"></script>
-    <script type="text/javascript" src="vendor/node_modules/nunjucks/browser/nunjucks.min.js"></script>
-    <script type="text/javascript" src="js/defaults.js"></script>
-    <script type="text/javascript" src="#CONFIG_FILE#"></script>
-    <script type="text/javascript" src="vendor/vendor.js"></script>
-    <script type="text/javascript" src="modules/default/defaultmodules.js"></script>
-    <script type="text/javascript" src="js/logger.js"></script>
-    <script type="text/javascript" src="translations/translations.js"></script>
-    <script type="text/javascript" src="js/translator.js"></script>
-    <script type="text/javascript" src="js/class.js"></script>
-    <script type="text/javascript" src="js/module.js"></script>
-    <script type="text/javascript" src="js/loader.js"></script>
-    <script type="text/javascript" src="js/socketclient.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
-  </body>
+  </div>
+  
+     <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/module.js"></script>
+  <script src="/js/socketclient.js"></script>
+  <script src="/js/loader.js"></script>
+  <script src="/js/main.js"></script>
+</body>
 </html>
