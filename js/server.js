@@ -1,119 +1,83 @@
-/* MagicMirror²
- * Server
- *
- * By Michael Teeuw https://michaelteeuw.nl
- * MIT Licensed.
- */
-const fs = require("fs");
+const express = require("express");
 const http = require("http");
 const https = require("https");
-const path = require("path");
-const express = require("express");
-const ipfilter = require("express-ipfilter").IpFilter;
-const helmet = require("helmet");
 const socketio = require("socket.io");
-
+const helmet = require("helmet");
+const { IpFilter } = require("express-ipfilter");
+const path = require("path");
+const fs = require("fs");
 const Log = require("logger");
-const Utils = require("./utils");
-const { cors, getConfig, getHtml, getVersion } = require("./server_functions");
 
-/**
- * Server
- * @param {object} config The MM config
- * @class
- */
 function Server(config) {
-	const app = express();
-	const port = process.env.MM_PORT || config.port;
-	const serverSockets = new Set();
-	let server = null;
-
-	/**
-	 * Opens the server for incoming connections
-	 * @returns {Promise} A promise that is resolved when the server listens to connections
-	 */
-	this.open = function () {
-		return new Promise((resolve) => {
-			if (config.useHttps) {
-				const options = {
-					key: fs.readFileSync(config.httpsPrivateKey),
-					cert: fs.readFileSync(config.httpsCertificate)
-				};
-				server = https.Server(options, app);
-			} else {
-				server = http.Server(app);
-			}
-			const io = socketio(server, {
-				cors: {
-					origin: /.*$/,
-					credentials: true
-				},
-				allowEIO3: true
-			});
-
-			server.on("connection", (socket) => {
-				serverSockets.add(socket);
-				socket.on("close", () => {
-					serverSockets.delete(socket);
-				});
-			});
-
-			Log.log(`Starting server on port ${port} ... `);
-			server.listen(port, config.address || "localhost");
-
-			if (config.ipWhitelist instanceof Array && config.ipWhitelist.length === 0) {
-				Log.warn(Utils.colors.warn("You're using a full whitelist configuration to allow for all IPs"));
-			}
-
-			app.use(function (req, res, next) {
-				ipfilter(config.ipWhitelist, { mode: config.ipWhitelist.length === 0 ? "deny" : "allow", log: false })(req, res, function (err) {
-					if (err === undefined) {
-						res.header("Access-Control-Allow-Origin", "*");
-						return next();
-					}
-					Log.log(err.message);
-					res.status(403).send("This device is not allowed to access your mirror. <br> Please check your config.js or config.js.sample to change this.");
-				});
-			});
-
-			app.use(helmet(config.httpHeaders));
-			app.use("/js", express.static(__dirname));
-
-			// TODO add tests directory only when running tests?
-			const directories = ["/config", "/css", "/fonts", "/modules", "/vendor", "/translations", "/tests/configs", "/tests/mocks"];
-			for (const directory of directories) {
-				app.use(directory, express.static(path.resolve(global.root_path + directory)));
-			}
-
-			app.get("/cors", async (req, res) => await cors(req, res));
-
-			app.get("/version", (req, res) => getVersion(req, res));
-
-			app.get("/config", (req, res) => getConfig(req, res));
-
-			app.get("/", (req, res) => getHtml(req, res));
-
-			server.on("listening", () => {
-				resolve({
-					app,
-					io
-				});
-			});
-		});
-	};
-
-	/**
-	 * Closes the server and destroys all lingering connections to it.
-	 * @returns {Promise} A promise that resolves when server has successfully shut down
-	 */
-	this.close = function () {
-		return new Promise((resolve) => {
-			for (const socket of serverSockets.values()) {
-				socket.destroy();
-			}
-			server.close(resolve);
-		});
-	};
+  const app = express();
+  
+  // Security middleware
+  app.use(helmet({
+    contentSecurityPolicy: false
+  }));
+  
+  // IP filtering
+  if (config.ipWhitelist && config.ipWhitelist.length > 0) {
+    app.use(IpFilter(config.ipWhitelist, {
+      mode: "allow",
+      log: false
+    }));
+  }
+  
+  // Create HTTP/HTTPS server
+  let server;
+  if (config.useHttps) {
+    const options = {
+      key: fs.readFileSync(config.httpsPrivateKey),
+      cert: fs.readFileSync(config.httpsPublicCert)
+    };
+    server = https.createServer(options, app);
+  } else {
+    server = http.createServer(app);
+  }
+  
+  // Socket.IO setup
+  const io = socketio(server, {
+    cors: {
+      origin: "*"
+    }
+  });
+  
+  // Serve static files
+  app.use("/js", express.static(path.resolve(__dirname)));
+  app.use("/css", express.static(path.resolve(__dirname, "../css")));
+  app.use("/vendor", express.static(path.resolve(__dirname, "../vendor")));
+  app.use("/modules", express.static(path.resolve(__dirname, "../modules")));
+  app.use("/translations", express.static(path.resolve(__dirname, "../translations")));
+  
+  // Root route
+  app.get("/", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../index.html"));
+  });
+  
+  // Config route
+  app.get("/config", (req, res) => {
+    res.json(config);
+  });
+  
+  // Start server
+  this.open = function() {
+    return new Promise((resolve) => {
+      server.listen(config.port, config.address, () => {
+        Log.info(`Server running on http://${config.address}:${config.port}`);
+        resolve({ app, io, server });
+      });
+    });
+  };
+  
+  this.close = function() {
+    return new Promise((resolve) => {
+      server.close(() => {
+        Log.info("Server closed");
+        resolve();
+      });
+    });
+  };
 }
 
 module.exports = Server;
