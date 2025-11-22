@@ -1,297 +1,170 @@
-/* global WeatherProvider, WeatherUtils, formatTime */
-
-/* MagicMirror²
- * Module: Weather
- *
- * By Michael Teeuw https://michaelteeuw.nl
- * MIT Licensed.
- */
 Module.register("weather", {
-	// Default module config.
-	defaults: {
-		weatherProvider: "openweathermap",
-		roundTemp: false,
-		type: "current", // current, forecast, daily (equivalent to forecast), hourly (only with OpenWeatherMap /onecall endpoint)
-		lang: config.language,
-		units: config.units,
-		tempUnits: config.units,
-		windUnits: config.units,
-		timeFormat: config.timeFormat,
-		updateInterval: 10 * 60 * 1000, // every 10 minutes
-		animationSpeed: 1000,
-		showFeelsLike: true,
-		showHumidity: false,
-		showIndoorHumidity: false,
-		showIndoorTemperature: false,
-		showPeriod: true,
-		showPeriodUpper: false,
-		showPrecipitationAmount: false,
-		showPrecipitationProbability: false,
-		showUVIndex: false,
-		showSun: true,
-		showWindDirection: true,
-		showWindDirectionAsArrow: false,
-		degreeLabel: false,
-		decimalSymbol: ".",
-		maxNumberOfDays: 5,
-		maxEntries: 5,
-		ignoreToday: false,
-		fade: true,
-		fadePoint: 0.25, // Start on 1/4th of the list.
-		initialLoadDelay: 0, // 0 seconds delay
-		appendLocationNameToHeader: true,
-		calendarClass: "calendar",
-		tableClass: "small",
-		onlyTemp: false,
-		colored: false,
-		absoluteDates: false,
-		hourlyForecastIncrements: 1
-	},
+  defaults: {
+    weatherProvider: "openweathermap",
+    type: "current",
+    location: false,
+    locationID: false,
+    apiKey: "",
+    apiBase: "https://api.openweathermap.org/data/2.5/",
+    weatherEndpoint: "/weather",
+    units: "imperial",
+    roundTemp: false,
+    showWindDirection: true,
+    showHumidity: false,
+    showFeelsLike: true,
+    showDescription: true,
+    updateInterval: 10 * 60 * 1000,
+    animationSpeed: 1000,
+    initialLoadDelay: 0,
+    iconTable: {
+      "01d": "☀️", "02d": "⛅", "03d": "☁️", "04d": "☁️",
+      "09d": "🌧️", "10d": "🌧️", "11d": "⛈️", "13d": "❄️", "50d": "🌫️",
+      "01n": "🌙", "02n": "☁️", "03n": "☁️", "04n": "☁️",
+      "09n": "🌧️", "10n": "🌧️", "11n": "⛈️", "13n": "❄️", "50n": "🌫️"
+    }
+  },
 
-	// Module properties.
-	weatherProvider: null,
+  start: function() {
+    console.log("Weather module started");
+    this.weatherData = null;
+    this.loaded = false;
+    this.scheduleUpdate(this.config.initialLoadDelay);
+  },
 
-	// Can be used by the provider to display location of event if nothing else is specified
-	firstEvent: null,
+  getDom: function() {
+    const wrapper = document.createElement("div");
+    wrapper.className = "weather";
 
-	// Define required scripts.
-	getStyles: function () {
-		return ["font-awesome.css", "weather-icons.css", "weather.css"];
-	},
+    if (!this.config.apiKey) {
+      wrapper.innerHTML = "Please set API key";
+      wrapper.className = "dimmed light small";
+      return wrapper;
+    }
 
-	// Return the scripts that are necessary for the weather module.
-	getScripts: function () {
-		return ["moment.js", this.file("../utils.js"), "weatherutils.js", "weatherprovider.js", "weatherobject.js", "suncalc.js", this.file(`providers/${this.config.weatherProvider.toLowerCase()}.js`)];
-	},
+    if (!this.loaded) {
+      wrapper.innerHTML = "Loading weather...";
+      wrapper.className = "dimmed light small";
+      return wrapper;
+    }
 
-	// Override getHeader method.
-	getHeader: function () {
-		if (this.config.appendLocationNameToHeader && this.weatherProvider) {
-			if (this.data.header) return `${this.data.header} ${this.weatherProvider.fetchedLocation()}`;
-			else return this.weatherProvider.fetchedLocation();
-		}
+    if (!this.weatherData) {
+      wrapper.innerHTML = "No weather data";
+      wrapper.className = "dimmed light small";
+      return wrapper;
+    }
 
-		return this.data.header ? this.data.header : "";
-	},
+    const large = document.createElement("div");
+    large.className = "large light";
 
-	// Start the weather module.
-	start: function () {
-		moment.locale(this.config.lang);
+    const weatherIcon = document.createElement("span");
+    weatherIcon.className = "weathericon";
+    weatherIcon.innerHTML = this.weatherIcon;
+    large.appendChild(weatherIcon);
 
-		if (this.config.useKmh) {
-			Log.warn("Your are using the deprecated config values 'useKmh'. Please switch to windUnits!");
-			this.windUnits = "kmh";
-		} else if (this.config.useBeaufort) {
-			Log.warn("Your are using the deprecated config values 'useBeaufort'. Please switch to windUnits!");
-			this.windUnits = "beaufort";
-		}
+    const temperature = document.createElement("span");
+    temperature.className = "temperature bright";
+    temperature.innerHTML = " " + this.temperature + "°";
+    large.appendChild(temperature);
 
-		// Initialize the weather provider.
-		this.weatherProvider = WeatherProvider.initialize(this.config.weatherProvider, this);
+    wrapper.appendChild(large);
 
-		// Let the weather provider know we are starting.
-		this.weatherProvider.start();
+    if (this.config.showDescription) {
+      const small = document.createElement("div");
+      small.className = "small dimmed";
+      small.innerHTML = this.weatherDescription;
+      wrapper.appendChild(small);
+    }
 
-		// Add custom filters
-		this.addFilters();
+    if (this.config.showFeelsLike && this.feelsLike) {
+      const feelsLike = document.createElement("div");
+      feelsLike.className = "small dimmed";
+      feelsLike.innerHTML = "Feels like " + this.feelsLike + "°";
+      wrapper.appendChild(feelsLike);
+    }
 
-		// Schedule the first update.
-		this.scheduleUpdate(this.config.initialLoadDelay);
-	},
+    if (this.config.showWindDirection) {
+      const wind = document.createElement("div");
+      wind.className = "small dimmed wind";
+      wind.innerHTML = "Wind: " + this.windSpeed + " " + this.windDirection;
+      wrapper.appendChild(wind);
+    }
 
-	// Override notification handler.
-	notificationReceived: function (notification, payload, sender) {
-		if (notification === "CALENDAR_EVENTS") {
-			const senderClasses = sender.data.classes.toLowerCase().split(" ");
-			if (senderClasses.indexOf(this.config.calendarClass.toLowerCase()) !== -1) {
-				this.firstEvent = null;
-				for (let event of payload) {
-					if (event.location || event.geo) {
-						this.firstEvent = event;
-						Log.debug("First upcoming event with location: ", event);
-						break;
-					}
-				}
-			}
-		} else if (notification === "INDOOR_TEMPERATURE") {
-			this.indoorTemperature = this.roundValue(payload);
-			this.updateDom(300);
-		} else if (notification === "INDOOR_HUMIDITY") {
-			this.indoorHumidity = this.roundValue(payload);
-			this.updateDom(300);
-		}
-	},
+    if (this.config.showHumidity) {
+      const humidity = document.createElement("div");
+      humidity.className = "small dimmed";
+      humidity.innerHTML = "Humidity: " + this.humidity + "%";
+      wrapper.appendChild(humidity);
+    }
 
-	// Select the template depending on the display type.
-	getTemplate: function () {
-		switch (this.config.type.toLowerCase()) {
-			case "current":
-				return "current.njk";
-			case "hourly":
-				return "hourly.njk";
-			case "daily":
-			case "forecast":
-				return "forecast.njk";
-			//Make the invalid values use the "Loading..." from forecast
-			default:
-				return "forecast.njk";
-		}
-	},
+    return wrapper;
+  },
 
-	// Add all the data to the template.
-	getTemplateData: function () {
-		const currentData = this.weatherProvider.currentWeather();
-		const forecastData = this.weatherProvider.weatherForecast();
+  scheduleUpdate: function(delay) {
+    let nextLoad = this.config.updateInterval;
+    if (typeof delay !== "undefined" && delay >= 0) {
+      nextLoad = delay;
+    }
 
-		// Skip some hourly forecast entries if configured
-		const hourlyData = this.weatherProvider.weatherHourly()?.filter((e, i) => (i + 1) % this.config.hourlyForecastIncrements === this.config.hourlyForecastIncrements - 1);
+    const self = this;
+    setTimeout(function() {
+      self.updateWeather();
+    }, nextLoad);
+  },
 
-		return {
-			config: this.config,
-			current: currentData,
-			forecast: forecastData,
-			hourly: hourlyData,
-			indoor: {
-				humidity: this.indoorHumidity,
-				temperature: this.indoorTemperature
-			}
-		};
-	},
+  updateWeather: function() {
+    if (!this.config.apiKey) {
+      console.log("Weather: No API key");
+      return;
+    }
+    this.sendSocketNotification("GET_WEATHER", { config: this.config });
+  },
 
-	// What to do when the weather provider has new information available?
-	updateAvailable: function () {
-		Log.log("New weather information available.");
-		this.updateDom(0);
-		this.scheduleUpdate();
+  socketNotificationReceived: function(notification, payload) {
+    if (notification === "WEATHER_DATA") {
+      this.processWeather(payload);
+    }
+  },
 
-		if (this.weatherProvider.currentWeather()) {
-			this.sendNotification("CURRENTWEATHER_TYPE", { type: this.weatherProvider.currentWeather().weatherType.replace("-", "_") });
-		}
+  processWeather: function(data) {
+    if (!data || !data.main) {
+      console.error("Weather: Invalid data");
+      return;
+    }
 
-		const notificationPayload = {
-			currentWeather: this.weatherProvider?.currentWeatherObject?.simpleClone() ?? null,
-			forecastArray: this.weatherProvider?.weatherForecastArray?.map((ar) => ar.simpleClone()) ?? [],
-			hourlyArray: this.weatherProvider?.weatherHourlyArray?.map((ar) => ar.simpleClone()) ?? [],
-			locationName: this.weatherProvider?.fetchedLocationName,
-			providerName: this.weatherProvider.providerName
-		};
-		this.sendNotification("WEATHER_UPDATED", notificationPayload);
-	},
+    this.weatherData = data;
+    this.temperature = this.roundValue(data.main.temp);
+    this.feelsLike = this.roundValue(data.main.feels_like);
+    this.humidity = data.main.humidity;
+    this.weatherDescription = data.weather[0].description;
+    this.weatherIcon = this.config.iconTable[data.weather[0].icon] || "❓";
+    this.windSpeed = this.roundValue(data.wind.speed);
+    this.windDirection = this.deg2Cardinal(data.wind.deg);
 
-	scheduleUpdate: function (delay = null) {
-		let nextLoad = this.config.updateInterval;
-		if (delay !== null && delay >= 0) {
-			nextLoad = delay;
-		}
+    this.loaded = true;
+    this.updateDom(this.config.animationSpeed);
+    this.scheduleUpdate();
+  },
 
-		setTimeout(() => {
-			switch (this.config.type.toLowerCase()) {
-				case "current":
-					this.weatherProvider.fetchCurrentWeather();
-					break;
-				case "hourly":
-					this.weatherProvider.fetchWeatherHourly();
-					break;
-				case "daily":
-				case "forecast":
-					this.weatherProvider.fetchWeatherForecast();
-					break;
-				default:
-					Log.error(`Invalid type ${this.config.type} configured (must be one of 'current', 'hourly', 'daily' or 'forecast')`);
-			}
-		}, nextLoad);
-	},
+  roundValue: function(value) {
+    return this.config.roundTemp ? Math.round(value) : value.toFixed(1);
+  },
 
-	roundValue: function (temperature) {
-		const decimals = this.config.roundTemp ? 0 : 1;
-		const roundValue = parseFloat(temperature).toFixed(decimals);
-		return roundValue === "-0" ? 0 : roundValue;
-	},
-
-	addFilters() {
-		this.nunjucksEnvironment().addFilter(
-			"formatTime",
-			function (date) {
-				return formatTime(this.config, date);
-			}.bind(this)
-		);
-
-		this.nunjucksEnvironment().addFilter(
-			"unit",
-			function (value, type, valueUnit) {
-				let formattedValue;
-				if (type === "temperature") {
-					formattedValue = `${this.roundValue(WeatherUtils.convertTemp(value, this.config.tempUnits))}°`;
-					if (this.config.degreeLabel) {
-						if (this.config.tempUnits === "metric") {
-							formattedValue += "C";
-						} else if (this.config.tempUnits === "imperial") {
-							formattedValue += "F";
-						} else {
-							formattedValue += "K";
-						}
-					}
-				} else if (type === "precip") {
-					if (value === null || isNaN(value) || value === 0 || value.toFixed(2) === "0.00") {
-						formattedValue = "";
-					} else {
-						formattedValue = WeatherUtils.convertPrecipitationUnit(value, valueUnit, this.config.units);
-					}
-				} else if (type === "humidity") {
-					formattedValue = `${value}%`;
-				} else if (type === "wind") {
-					formattedValue = WeatherUtils.convertWind(value, this.config.windUnits);
-				}
-				return formattedValue;
-			}.bind(this)
-		);
-
-		this.nunjucksEnvironment().addFilter(
-			"roundValue",
-			function (value) {
-				return this.roundValue(value);
-			}.bind(this)
-		);
-
-		this.nunjucksEnvironment().addFilter(
-			"decimalSymbol",
-			function (value) {
-				return value.toString().replace(/\./g, this.config.decimalSymbol);
-			}.bind(this)
-		);
-
-		this.nunjucksEnvironment().addFilter(
-			"calcNumSteps",
-			function (forecast) {
-				return Math.min(forecast.length, this.config.maxNumberOfDays);
-			}.bind(this)
-		);
-
-		this.nunjucksEnvironment().addFilter(
-			"calcNumEntries",
-			function (dataArray) {
-				return Math.min(dataArray.length, this.config.maxEntries);
-			}.bind(this)
-		);
-
-		this.nunjucksEnvironment().addFilter(
-			"opacity",
-			function (currentStep, numSteps) {
-				if (this.config.fade && this.config.fadePoint < 1) {
-					if (this.config.fadePoint < 0) {
-						this.config.fadePoint = 0;
-					}
-					const startingPoint = numSteps * this.config.fadePoint;
-					const numFadesteps = numSteps - startingPoint;
-					if (currentStep >= startingPoint) {
-						return 1 - (currentStep - startingPoint) / numFadesteps;
-					} else {
-						return 1;
-					}
-				} else {
-					return 1;
-				}
-			}.bind(this)
-		);
-	}
+  deg2Cardinal: function(deg) {
+    if (deg > 11.25 && deg <= 33.75) return "NNE";
+    else if (deg > 33.75 && deg <= 56.25) return "NE";
+    else if (deg > 56.25 && deg <= 78.75) return "ENE";
+    else if (deg > 78.75 && deg <= 101.25) return "E";
+    else if (deg > 101.25 && deg <= 123.75) return "ESE";
+    else if (deg > 123.75 && deg <= 146.25) return "SE";
+    else if (deg > 146.25 && deg <= 168.75) return "SSE";
+    else if (deg > 168.75 && deg <= 191.25) return "S";
+    else if (deg > 191.25 && deg <= 213.75) return "SSW";
+    else if (deg > 213.75 && deg <= 236.25) return "SW";
+    else if (deg > 236.25 && deg <= 258.75) return "WSW";
+    else if (deg > 258.75 && deg <= 281.25) return "W";
+    else if (deg > 281.25 && deg <= 303.75) return "WNW";
+    else if (deg > 303.75 && deg <= 326.25) return "NW";
+    else if (deg > 326.25 && deg <= 348.75) return "NNW";
+    else return "N";
+  }
 });

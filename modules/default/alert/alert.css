@@ -26,19 +26,3 @@
   font-size: 24px;
   line-height: 1.5;
 }
-
-.alert.info {
-  border-color: #5bc0de;
-}
-
-.alert.success {
-  border-color: #5cb85c;
-}
-
-.alert.warning {
-  border-color: #f0ad4e;
-}
-
-.alert.error {
-  border-color: #d9534f;
-}

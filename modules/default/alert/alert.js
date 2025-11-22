@@ -1,75 +1,69 @@
-const Log = require("logger");
-
 Module.register("alert", {
-	alerts: [],
+  alerts: [],
+  
+  defaults: {
+    displayTime: 3500,
+    position: "center",
+    effect: "slide"
+  },
 
-	defaults: {
-		displayTime: 3500,
-		position: "center",
-		effect: "slide"
-	},
+  start: function() {
+    console.log("Alert module started");
+  },
 
-	getStyles: function () {
-		return ["alert.css"];
-	},
+  getDom: function() {
+    const wrapper = document.createElement("div");
+    wrapper.className = "alert-wrapper";
 
-	start: function () {
-		Log.info("Starting module: alert");
-	},
+    if (this.alerts.length === 0) {
+      wrapper.style.display = "none";
+      return wrapper;
+    }
 
-	getDom: function () {
-		const wrapper = document.createElement("div");
-		wrapper.className = "alert-wrapper";
+    const alert = this.alerts[0];
+    const alertDiv = document.createElement("div");
+    alertDiv.className = "alert " + (alert.type || "");
+    
+    if (alert.title) {
+      const titleDiv = document.createElement("div");
+      titleDiv.className = "alert-title";
+      titleDiv.innerHTML = alert.title;
+      alertDiv.appendChild(titleDiv);
+    }
 
-		if (this.alerts.length === 0) {
-			wrapper.style.display = "none";
-			return wrapper;
-		}
+    if (alert.message) {
+      const messageDiv = document.createElement("div");
+      messageDiv.className = "alert-message";
+      messageDiv.innerHTML = alert.message;
+      alertDiv.appendChild(messageDiv);
+    }
 
-		const alert = this.alerts[0];
-		const alertDiv = document.createElement("div");
-		alertDiv.className = "alert " + (alert.type || "");
+    wrapper.appendChild(alertDiv);
+    return wrapper;
+  },
 
-		if (alert.title) {
-			const titleDiv = document.createElement("div");
-			titleDiv.className = "alert-title";
-			titleDiv.innerHTML = alert.title;
-			alertDiv.appendChild(titleDiv);
-		}
+  notificationReceived: function(notification, payload, sender) {
+    if (notification === "SHOW_ALERT") {
+      this.showAlert(payload);
+    } else if (notification === "HIDE_ALERT") {
+      this.hideAlert();
+    }
+  },
 
-		if (alert.message) {
-			const messageDiv = document.createElement("div");
-			messageDiv.className = "alert-message";
-			messageDiv.innerHTML = alert.message;
-			alertDiv.appendChild(messageDiv);
-		}
+  showAlert: function(alert) {
+    this.alerts.push(alert);
+    this.updateDom(300);
 
-		wrapper.appendChild(alertDiv);
-		return wrapper;
-	},
+    if (alert.timer) {
+      const self = this;
+      setTimeout(function() {
+        self.hideAlert();
+      }, alert.timer || this.config.displayTime);
+    }
+  },
 
-	notificationReceived: function (notification, payload, sender) {
-		if (notification === "SHOW_ALERT") {
-			this.showAlert(payload);
-		} else if (notification === "HIDE_ALERT") {
-			this.hideAlert();
-		}
-	},
-
-	showAlert: function (alert) {
-		this.alerts.push(alert);
-		this.updateDom(300);
-
-		if (alert.timer) {
-			const self = this;
-			setTimeout(function () {
-				self.hideAlert();
-			}, alert.timer || this.config.displayTime);
-		}
-	},
-
-	hideAlert: function () {
-		this.alerts.shift();
-		this.updateDom(300);
-	}
+  hideAlert: function() {
+    this.alerts.shift();
+    this.updateDom(300);
+  }
 });
