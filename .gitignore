@@ -60,6 +60,8 @@ Temporary Items
 
 # Ignore all modules except the default modules.
 /modules/**
+/modules/MMM-GoogleAssistant/node_modules/*
+!/modules/MMM-AssistantMk2
 !/modules/default
 !/modules/default/**
 !/modules/README.md**

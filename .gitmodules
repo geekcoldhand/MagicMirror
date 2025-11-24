@@ -1,0 +1,3 @@
+[submodule "modules/default/MMM-AssistantMk2"]
+	path = modules/default/MMM-AssistantMk2
+	url = git@github.com:saiedmethal/MMM-AssistantMk2.git
