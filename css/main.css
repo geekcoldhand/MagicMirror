@@ -1,11 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Cactus+Classical+Serif&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&display=swap");
+
 :root {
   --color-text: #999;
   --color-text-dimmed: #666;
   --color-text-bright: #fff;
   --color-background: #000;
-  --font-primary: "Roboto Condensed";
-  --font-secondary: "Roboto";
-  --font-size: 20px;
+  --font-primary: "Cactus Classical Serif Regular";
+  --font-size: 1rem;
   --font-size-xsmall: 0.75rem;
   --font-size-small: 1rem;
   --font-size-medium: 1.5rem;
@@ -86,22 +87,22 @@ body {
 }
 
 .thin {
-  font-family: var(--font-secondary), sans-serif;
+  font-family: var(--font-primary), sans-serif;
   font-weight: 100;
 }
 
 .light {
-  font-family: var(--font-primary), sans-serif;
+  font-family: var(--font-primary);
   font-weight: 300;
 }
 
 .regular {
-  font-family: var(--font-primary), sans-serif;
+  font-family: var(--font-primary);
   font-weight: 400;
 }
 
 .bold {
-  font-family: var(--font-primary), sans-serif;
+  font-family: var(--font-primary);
   font-weight: 700;
 }
 
@@ -116,8 +117,9 @@ body {
 header {
   text-transform: uppercase;
   font-size: var(--font-size-xsmall);
-  font-family: var(--font-primary), Arial, Helvetica, sans-serif;
+  font-family: "Cactus Classical Serif", serif;
   font-weight: 400;
+  font-style: normal;
   border-bottom: 1px solid var(--color-text-dimmed);
   line-height: 15px;
   padding-bottom: 5px;

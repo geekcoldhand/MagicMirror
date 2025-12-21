@@ -80,7 +80,7 @@ function Server(config) {
 			app.use("/js", express.static(__dirname));
 
 			// TODO add tests directory only when running tests?
-			const directories = ["/config", "/css", "/fonts", "/modules", "/vendor", "/translations", "/tests/configs", "/tests/mocks"];
+			const directories = ["/config", "/css", "/fonts", "/modules", "/vendor", "/translations", "/tests/configs", "/tests/mocks", "/public"];
 			for (const directory of directories) {
 				app.use(directory, express.static(path.resolve(global.root_path + directory)));
 			}
