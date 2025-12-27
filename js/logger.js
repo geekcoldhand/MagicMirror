@@ -7,13 +7,45 @@
  * By Michael Teeuw https://michaelteeuw.nl
  * MIT Licensed.
  */
+
 (function (root, factory) {
 	if (typeof exports === "object") {
 		if (process.env.JEST_WORKER_ID === undefined) {
+			const colors = require("ansis");
 			// add timestamps in front of log messages
 			require("console-stamp")(console, {
-				pattern: "yyyy-mm-dd HH:MM:ss.l",
-				include: ["debug", "log", "info", "warn", "error"]
+				format: ":date(yyyy-mm-dd HH:MM:ss.l) :label(7) :msg",
+				tokens: {
+					label: (arg) => {
+						const { method, defaultTokens } = arg;
+						let label = defaultTokens.label(arg);
+						if (method === "error") {
+							label = colors.red(label);
+						} else if (method === "warn") {
+							label = colors.yellow(label);
+						} else if (method === "debug") {
+							label = colors.bgBlue(label);
+						} else if (method === "log") {
+							label = colors.blue(label);
+						}
+						return label;
+					},
+					msg: (arg) => {
+						const { method, defaultTokens } = arg;
+						let msg = defaultTokens.msg(arg);
+						if (method === "error") {
+							msg = colors.red(msg);
+						} else if (method === "warn") {
+							msg = colors.yellow(msg);
+						} else if (method === "info") {
+							msg = colors.blue(msg);
+						}
+						return msg;
+					}
+				}
+
+				//pattern: "yyyy-mm-dd HH:MM:ss.l",
+				//include: ["debug", "log", "info", "warn", "error"]
 			});
 		}
 		// Node, CommonJS-like
