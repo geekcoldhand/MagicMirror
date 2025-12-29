@@ -77,17 +77,44 @@ weatherprovider.js:35 Weather provider: OpenWeatherMap initialized.
 weatherprovider.js:46 Weather provider: OpenWeatherMap started.
 MMM-AssistantMk2.js:88 start
 main.js:482 All modules started!
-mirror.gif:1     Failed to load resource: the server responded with a status of 404 (Not Found)
+Wake Animation module started
+alert.js:48 Starting module: alert
+clock.js:49 Starting module: clock
+calendar.js:97 Starting module: calendar
+weatherprovider.js:35 Weather provider: OpenWeatherMap initialized.
+weatherprovider.js:46 Weather provider: OpenWeatherMap started.
+MMM-AssistantMk2.js:88 start
+main.js:482 All modules started!
+mirror.gif:1     GET http://localhost:8080/public/mirror.gif 404 (Not Found)
+Image (async)
+getDom @ MMM-WakeAnimation.js:23
+(anonymous) @ main.js:110
+updateDom @ main.js:108
+(anonymous) @ main.js:53
+createDomObjects @ main.js:20
+modulesStarted @ main.js:485
+startModules @ loader.js:42
+await in startModules (async)
+loadNextModule @ loader.js:218
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadModules @ loader.js:221
+init @ main.js:471
+await in init (async)
+(anonymous) @ main.js:593
 weather.js:163 New weather information available.
-www-widgetapi.js:178 Unrecognized feature: 'web-share'.
-X @ www-widgetapi.js:178
-5Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('<URL>') does not match the recipient window's origin ('<URL>').
-Error with Permissions-Policy header: Unrecognized feature: 'ch-ua-form-factors'.
-googleads.g.doubleclick.net/pagead/id:1     Failed to load resource: net::ERR_UNSAFE_REDIRECT
-MMM-AssistantMk2.js:158 youtube error: 2
-www.youtube.com/youtubei/v1/log_event?alt=json:1     Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
-generate_204:1     Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
-www.youtube.com/youtubei/v1/log_event?alt=json:1     Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
-localhost/:1 Refused to apply style from 'http://localhost:8080/css/custom.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled.
-     POST https://www.youtube.com/youtubei/v1/log_event?alt=json net::ERR_BLOCKED_BY_CLIENT
-send @
+
+MMM-WakeAnimation.js:64 Hiding wake animation
+mirror.gif:1     GET http://localhost:8080/public/mirror.gif 404 (Not Found)
+Image 
