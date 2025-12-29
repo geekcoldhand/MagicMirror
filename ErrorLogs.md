@@ -94,3 +94,11 @@ Please make sure you have the correct access rights
 and the repository exists.
 geek-pi@raspberrypi:~/MagicMirror $ 
 
+----
+geek-pi@raspberrypi:~/MagicMirror $ git push -u origin prod
+Username for 'https://github.com': geekcoldhand
+Password for 'https://geekcoldhand@github.com': 
+remote: Permission to geekcoldhand/MagicMirror.git denied to geekcoldhand.
+fatal: unable to access 'https://github.com/geekcoldhand/MagicMirror.git/': The requested URL returned error: 403
+
+
