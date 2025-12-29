@@ -1,0 +1,12 @@
+{
+	"name": "weather",
+	"version": "1.0.0",
+	"description": "This module will be configurable to be used as a current weather view, or to show the forecast. This way the module can be used twice to fulfill both purposes.",
+	"main": "weather.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC"
+}

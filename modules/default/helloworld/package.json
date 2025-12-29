@@ -1,0 +1,12 @@
+{
+	"name": "helloworld",
+	"version": "1.0.0",
+	"description": "The `helloworld` module is one of the default modules of the MagicMirror². It is a simple way to display a static text on the mirror.",
+	"main": "helloworld.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC"
+}

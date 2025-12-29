@@ -1,0 +1,12 @@
+{
+	"name": "calendar",
+	"version": "1.0.0",
+	"description": "The `calendar` module is one of the default modules of the MagicMirror². This module displays events from a public .ical calendar. It can combine multiple calendars.",
+	"main": "calendar.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC"
+}
