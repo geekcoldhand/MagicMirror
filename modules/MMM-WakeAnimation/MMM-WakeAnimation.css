@@ -1,32 +1,58 @@
 .wake-animation-wrapper {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  width: 400px;
-  height: 400px;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
-  background: rgba(131, 129, 129, 0.8);
-  border-radius: 50%;
-  animation: fadeIn 0.5s ease-in;
+  align-items: center;
+  z-index: 9999;
+  pointer-events: none;
 }
 
-.wake-animation-gif {
-  max-width: 300px;
-  max-height: 300px;
-  border-radius: 20px;
+.animation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.mirror-gif {
+  max-width: 14rem;
+  max-height: 14rem;
+  width: auto;
+  height: auto;
+}
+
+.listening-text {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  font-weight: 300;
+  letter-spacing: 2px;
+  animation: pulse 2s ease-in-out infinite;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.8);
+    transform: scale(0.8);
   }
   to {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
   }
 }

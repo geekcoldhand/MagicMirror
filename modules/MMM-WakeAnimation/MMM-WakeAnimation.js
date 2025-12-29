@@ -1,7 +1,7 @@
 Module.register("MMM-WakeAnimation", {
 	defaults: {
 		animationSpeed: 1000,
-		gifUrl: "public/mirror.gif",
+		gifUrl: "modules/MMM-WakeAnimation/public/mirror.gif",
 		showOnWake: true,
 		displayTime: 3000 // 3 sec
 	},
