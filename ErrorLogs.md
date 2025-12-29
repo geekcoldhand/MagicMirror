@@ -1,104 +1,93 @@
-geek-pi@raspberrypi:~/MagicMirror $ git status
-On branch prod
-Changes to be committed:
-  (use "git restore --staged <file>..." to unstage)
-	new file:   modules/default/calendar/package-lock.json
-	new file:   modules/default/calendar/package.json
-	new file:   modules/default/clock/package-lock.json
-	new file:   modules/default/clock/package.json
-	new file:   modules/default/helloworld/package-lock.json
-	new file:   modules/default/helloworld/package.json
-	new file:   modules/default/weather/package-lock.json
-	new file:   modules/default/weather/package.json
-	modified:   package-lock.json
-	new file:   test.wav
-	new file:   test2.wav
-	new file:   test3.wav
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-  (commit or discard the untracked or modified content in submodules)
-	modified:   modules/MMM-AssistantMk2 (modified content, untracked content)
-
-geek-pi@raspberrypi:~/MagicMirror $ git branch
-  feature/mirrormirror
-  guyfawkeMirror
-  master
-* prod
-geek-pi@raspberrypi:~/MagicMirror $ git push -u prod
-fatal: 'prod' does not appear to be a git repository
-fatal: Could not read from remote repository.
-
-Please make sure you have the correct access rights
-and the repository exists.
-geek-pi@raspberrypi:~/MagicMirror $ git push -u origin prod
-Warning: Permanently added the ECDSA host key for IP address '140.82.114.3' to the list of known hosts.
-git@github.com: Permission denied (publickey).
-fatal: Could not read from remote repository.
-
-----
-
-
-geek-pi@raspberrypi:~/MagicMirror $ git commit -m 'working test'
-Author identity unknown
-
-*** Please tell me who you are.
-
-Run
-
-  git config --global user.email "you@example.com"
-  git config --global user.name "Your Name"
-
-to set your account's default identity.
-Omit --global to set the identity only in this repository.
-
-fatal: unable to auto-detect email address (got 'geek-pi@raspberrypi.(none)')
-geek-pi@raspberrypi:~/MagicMirror $ git config --global user.email "horatiousaharris@gmail.com"
-geek-pi@raspberrypi:~/MagicMirror $ git config --global user.name "geekcoldhand"
-geek-pi@raspberrypi:~/MagicMirror $ git commit -m 'working test'
-/usr/bin/npm
-
-> magicmirror@2.24.0 lint:staged
-> pretty-quick --staged
-
-🔍  Finding changed files since git revision 7a43151b.
-🎯  Found 4 changed files.
-✍️  Fixing up modules/default/calendar/package.json.
-✍️  Fixing up modules/default/clock/package.json.
-✍️  Fixing up modules/default/helloworld/package.json.
-✍️  Fixing up modules/default/weather/package.json.
-✅  Everything is awesome!
-[prod 8c0ceacf] working test
- 12 files changed, 5034 insertions(+), 4122 deletions(-)
- create mode 100644 modules/default/calendar/package-lock.json
- create mode 100644 modules/default/calendar/package.json
- create mode 100644 modules/default/clock/package-lock.json
- create mode 100644 modules/default/clock/package.json
- create mode 100644 modules/default/helloworld/package-lock.json
- create mode 100644 modules/default/helloworld/package.json
- create mode 100644 modules/default/weather/package-lock.json
- create mode 100644 modules/default/weather/package.json
- create mode 100644 test.wav
- create mode 100644 test2.wav
- create mode 100644 test3.wav
-geek-pi@raspberrypi:~/MagicMirror $ git push -u origin prod
-Username for 'https://github.com': geekcoldhand
-Password for 'https://geekcoldhand@github.com': 
-remote: Invalid username or token. Password authentication is not supported for Git operations.
-fatal: Authentication failed for 'https://github.com/geekcoldhand/MagicMirror.git/'
-geek-pi@raspberrypi:~/MagicMirror $ 
-
-
-Please make sure you have the correct access rights
-and the repository exists.
-geek-pi@raspberrypi:~/MagicMirror $ 
-
-----
-geek-pi@raspberrypi:~/MagicMirror $ git push -u origin prod
-Username for 'https://github.com': geekcoldhand
-Password for 'https://geekcoldhand@github.com': 
-remote: Permission to geekcoldhand/MagicMirror.git denied to geekcoldhand.
-fatal: unable to access 'https://github.com/geekcoldhand/MagicMirror.git/': The requested URL returned error: 403
-
-
+Initializing MagicMirror².
+translator.js:120 Loading core translation file: translations/en.json
+translator.js:136 Loading core translation fallback file: translations/en.json
+loader.js:162 Load script: modules/MMM-WakeAnimation/MMM-WakeAnimation.js
+module.js:481 Module registered: MMM-WakeAnimation
+loader.js:135 Bootstrapping module: MMM-WakeAnimation
+loader.js:139 Scripts loaded for: MMM-WakeAnimation
+loader.js:177 Load stylesheet: modules/MMM-WakeAnimation/MMM-WakeAnimation.css
+loader.js:142 Styles loaded for: MMM-WakeAnimation
+loader.js:145 Translations loaded for: MMM-WakeAnimation
+loader.js:162 Load script: modules/default/alert/alert.js
+module.js:481 Module registered: alert
+loader.js:135 Bootstrapping module: alert
+loader.js:162 Load script: modules/default/alert/notificationFx.js
+loader.js:139 Scripts loaded for: alert
+loader.js:177 Load stylesheet: vendor/css/font-awesome.css
+loader.js:177 Load stylesheet: modules/default/alert/./styles/notificationFx.css
+loader.js:177 Load stylesheet: modules/default/alert/./styles/center.css
+loader.js:142 Styles loaded for: alert
+translator.js:103 alert - Load translation: translations/en.json
+translator.js:103 alert - Load translation fallback: translations/bg.json
+loader.js:145 Translations loaded for: alert
+loader.js:162 Load script: modules/default/clock/clock.js
+module.js:481 Module registered: clock
+loader.js:135 Bootstrapping module: clock
+loader.js:162 Load script: vendor/node_modules/moment/min/moment-with-locales.js
+loader.js:162 Load script: vendor/node_modules/moment-timezone/builds/moment-timezone-with-data.js
+loader.js:162 Load script: vendor/node_modules/suncalc/suncalc.js
+loader.js:139 Scripts loaded for: clock
+loader.js:177 Load stylesheet: modules/default/clock/clock_styles.css
+loader.js:142 Styles loaded for: clock
+loader.js:145 Translations loaded for: clock
+loader.js:162 Load script: modules/default/calendar/calendar.js
+module.js:473 Check MagicMirror² version for module 'calendar' - Minimum version:  2.1.0 - Current version: 2.24.0
+module.js:475 Version is ok!
+module.js:481 Module registered: calendar
+loader.js:135 Bootstrapping module: calendar
+loader.js:162 Load script: modules/default/calendar/calendarutils.js
+loader.js:233 File already loaded: moment.js
+loader.js:139 Scripts loaded for: calendar
+loader.js:177 Load stylesheet: modules/default/calendar/calendar.css
+loader.js:233 File already loaded: font-awesome.css
+loader.js:142 Styles loaded for: calendar
+loader.js:145 Translations loaded for: calendar
+loader.js:162 Load script: modules/default/weather/weather.js
+module.js:481 Module registered: weather
+loader.js:135 Bootstrapping module: weather
+loader.js:233 File already loaded: moment.js
+loader.js:162 Load script: modules/default/weather/../utils.js
+loader.js:162 Load script: modules/default/weather/weatherutils.js
+loader.js:162 Load script: modules/default/weather/weatherprovider.js
+loader.js:162 Load script: modules/default/weather/weatherobject.js
+loader.js:233 File already loaded: suncalc.js
+loader.js:162 Load script: modules/default/weather/providers/openweathermap.js
+loader.js:139 Scripts loaded for: weather
+loader.js:233 File already loaded: font-awesome.css
+loader.js:177 Load stylesheet: vendor/node_modules/weathericons/css/weather-icons.css
+loader.js:177 Load stylesheet: modules/default/weather/weather.css
+loader.js:142 Styles loaded for: weather
+loader.js:145 Translations loaded for: weather
+loader.js:162 Load script: modules/MMM-AssistantMk2/MMM-AssistantMk2.js
+module.js:481 Module registered: MMM-AssistantMk2
+loader.js:135 Bootstrapping module: MMM-AssistantMk2
+loader.js:139 Scripts loaded for: MMM-AssistantMk2
+loader.js:177 Load stylesheet: modules/MMM-AssistantMk2/MMM-AssistantMk2.css
+loader.js:142 Styles loaded for: MMM-AssistantMk2
+loader.js:145 Translations loaded for: MMM-AssistantMk2
+loader.js:177 Load stylesheet: css/custom.css
+localhost/:1 Refused to apply style from 'http://localhost:8080/css/custom.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled.
+loader.js:187 Error on loading stylesheet: css/custom.css
+stylesheet.onerror @ loader.js:187
+MMM-WakeAnimation.js:10 Wake Animation module started
+alert.js:48 Starting module: alert
+clock.js:49 Starting module: clock
+calendar.js:97 Starting module: calendar
+weatherprovider.js:35 Weather provider: OpenWeatherMap initialized.
+weatherprovider.js:46 Weather provider: OpenWeatherMap started.
+MMM-AssistantMk2.js:88 start
+main.js:482 All modules started!
+mirror.gif:1     Failed to load resource: the server responded with a status of 404 (Not Found)
+weather.js:163 New weather information available.
+www-widgetapi.js:178 Unrecognized feature: 'web-share'.
+X @ www-widgetapi.js:178
+5Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('<URL>') does not match the recipient window's origin ('<URL>').
+Error with Permissions-Policy header: Unrecognized feature: 'ch-ua-form-factors'.
+googleads.g.doubleclick.net/pagead/id:1     Failed to load resource: net::ERR_UNSAFE_REDIRECT
+MMM-AssistantMk2.js:158 youtube error: 2
+www.youtube.com/youtubei/v1/log_event?alt=json:1     Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+generate_204:1     Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+www.youtube.com/youtubei/v1/log_event?alt=json:1     Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+localhost/:1 Refused to apply style from 'http://localhost:8080/css/custom.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled.
+     POST https://www.youtube.com/youtubei/v1/log_event?alt=json net::ERR_BLOCKED_BY_CLIENT
+send @
