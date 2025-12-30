@@ -9,6 +9,7 @@ Module.register("MMM-WakeAnimation", {
 	start: function () {
 		console.log("Wake Animation module started");
 		this.isVisible = false;
+		this.hideTimer = null; // Track the timer
 	},
 
 	getDom: function () {
@@ -32,19 +33,20 @@ Module.register("MMM-WakeAnimation", {
 	},
 
 	notificationReceived: function (notification, payload, sender) {
-		// Show animation when Assistant activates
-		if (notification === "ASSISTANT_ACTIVATED") {
+		console.log("MMM-WakeAnimation received:", notification); // Added logging
+
+		// MMM-AssistantMk2 notifications
+		if (notification === "ASSISTANT_LISTEN" || notification === "ASSISTANT_THINK") {
 			this.showAnimation();
 		}
 
-		// Hide when Assistant deactivates
+		// Legacy support for other notification systems
+		if (notification === "ASSISTANT_ACTIVATED" || notification === "HOTWORD_DETECTED") {
+			this.showAnimation();
+		}
+
 		if (notification === "ASSISTANT_DEACTIVATED") {
 			this.hideAnimation();
-		}
-
-		// Also respond to hotword detection
-		if (notification === "HOTWORD_DETECTED") {
-			this.showAnimation();
 		}
 	},
 
@@ -53,9 +55,14 @@ Module.register("MMM-WakeAnimation", {
 		this.isVisible = true;
 		this.updateDom(this.config.animationSpeed);
 
+		// Clear any existing timer before starting a new one
+		if (this.hideTimer) {
+			clearTimeout(this.hideTimer);
+		}
+
 		// Auto-hide after displayTime
 		const self = this;
-		setTimeout(function () {
+		this.hideTimer = setTimeout(function () {
 			self.hideAnimation();
 		}, this.config.displayTime);
 	},
@@ -64,5 +71,11 @@ Module.register("MMM-WakeAnimation", {
 		console.log("Hiding wake animation");
 		this.isVisible = false;
 		this.updateDom(this.config.animationSpeed);
+
+		// Clear the timer when manually hiding
+		if (this.hideTimer) {
+			clearTimeout(this.hideTimer);
+			this.hideTimer = null;
+		}
 	}
 });
