@@ -74,3 +74,38 @@ MMM-WakeAnimation.js:36 MMM-WakeAnimation received: WEATHER_UPDATED
 [2025-12-30 21:20:32.386] [LOG] end-of-utterance
 [2025-12-30 21:20:32.446] [LOG] Assistant Text Response:  
 [2025-12-30 21:20:32.486] [LOG] Conversation Completed
+
+geek-pi@raspberrypi:~/MagicMirror $ npm run server
+
+> magicmirror@2.24.0 server
+> node ./serveronly
+
+[2025-12-31 08:50:57.885] [LOG] Starting MagicMirror: v2.24.0
+[2025-12-31 08:50:57.924] [LOG] Loading config ...
+[2025-12-31 08:50:57.942] [DEBUG] config template file not exists, no envsubst
+[2025-12-31 08:50:57.971] [LOG] Loading module helpers ...
+[2025-12-31 08:50:57.975] [LOG] No helper found for module: MMM-WakeAnimation.
+[2025-12-31 08:50:57.978] [LOG] No helper found for module: MMM-NotificationTrigger.
+[2025-12-31 08:50:58.188] [ERROR] Whoops! There was an uncaught exception...
+[2025-12-31 08:50:58.211] [ERROR] Error: /lib/aarch64-linux-gnu/libc.so.6: version `GLIBC_2.33' not found (required by /home/geek-pi/MagicMirror/modules/MMM-PorcupineHotword/node_modules/@picovoice/pvrecorder-node/lib/raspberry-pi/cortex-a53-aarch64/pv_recorder.node)
+at Module.\_extensions..node (node:internal/modules/cjs/loader:1340:18)
+at Module.load (node:internal/modules/cjs/loader:1119:32)
+at Module.\_load (node:internal/modules/cjs/loader:960:12)
+at Module.require (node:internal/modules/cjs/loader:1143:19)
+at require (node:internal/modules/cjs/helpers:121:18)
+at <static_initializer> (/home/geek-pi/MagicMirror/modules/MMM-PorcupineHotword/node_modules/@picovoice/pvrecorder-node/dist/pv_recorder.js:21:26)
+at Object.<anonymous> (/home/geek-pi/MagicMirror/modules/MMM-PorcupineHotword/node_modules/@picovoice/pvrecorder-node/dist/pv_recorder.js:15:21)
+at Module.\_compile (node:internal/modules/cjs/loader:1256:14)
+at Module.\_extensions..js (node:internal/modules/cjs/loader:1310:10)
+at Module.load (node:internal/modules/cjs/loader:1119:32)
+at Module.\_load (node:internal/modules/cjs/loader:960:12)
+at Module.require (node:internal/modules/cjs/loader:1143:19)
+at require (node:internal/modules/cjs/helpers:121:18)
+at Object.<anonymous> (/home/geek-pi/MagicMirror/modules/MMM-PorcupineHotword/node_modules/@picovoice/pvrecorder-node/dist/index.js:14:23)
+at Module.\_compile (node:internal/modules/cjs/loader:1256:14)
+at Module.\_extensions..js (node:internal/modules/cjs/loader:1310:10) {
+code: 'ERR_DLOPEN_FAILED'
+}
+[2025-12-31 08:50:58.215] [ERROR] MagicMirror² will not quit, but it might be a good idea to check why this happened. Maybe no internet connection?
+[2025-12-31 08:50:58.221] [ERROR] If you think this really is an issue, please open an issue on GitHub: https://github.com/MichMich/MagicMirror/issues
+geek-pi@raspberrypi:~/MagicMirror $
