@@ -10,8 +10,6 @@ Module.register("MMM-WakeAnimation", {
 		console.log("Wake Animation module started");
 		this.isVisible = false;
 		this.hideTimer = null; // Track the timer
-
-		this.showAnimation();
 	},
 
 	getDom: function () {
