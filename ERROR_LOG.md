@@ -109,3 +109,56 @@ code: 'ERR_DLOPEN_FAILED'
 [2025-12-31 08:50:58.215] [ERROR] MagicMirror² will not quit, but it might be a good idea to check why this happened. Maybe no internet connection?
 [2025-12-31 08:50:58.221] [ERROR] If you think this really is an issue, please open an issue on GitHub: https://github.com/MichMich/MagicMirror/issues
 geek-pi@raspberrypi:~/MagicMirror $
+Starting module: MMM-SpeechHotword
+MMM-AssistantMk2.js:88 start
+alert.js:48 Starting module: alert
+clock.js:49 Starting module: clock
+calendar.js:97 Starting module: calendar
+weatherprovider.js:35 Weather provider: OpenWeatherMap initialized.
+weatherprovider.js:46 Weather provider: OpenWeatherMap started.
+main.js:482 All modules started!
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: ALL_MODULES_STARTED
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: MODULE_DOM_CREATED
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: DOM_OBJECTS_CREATED
+weather.js:163 New weather information available.
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: CURRENTWEATHER_TYPE
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: WEATHER_UPDATED
+MMM-AssistantMk2.js:158 youtube error: 2
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: CALENDAR_EVENTS
+741MMM-SpeechHotword.js:41 MMM-SpeechHotword: Listening
+
+geek-pi@raspberrypi:~/MagicMirror $ npm run server
+
+> magicmirror@2.24.0 server
+> node ./serveronly
+
+[2025-12-31 13:04:43.902] [LOG] Starting MagicMirror: v2.24.0
+[2025-12-31 13:04:43.933] [LOG] Loading config ...
+[2025-12-31 13:04:43.948] [DEBUG] config template file not exists, no envsubst
+[2025-12-31 13:04:44.000] [LOG] Loading module helpers ...
+[2025-12-31 13:04:44.003] [LOG] No helper found for module: MMM-WakeAnimation.
+[2025-12-31 13:04:44.006] [LOG] No helper found for module: MMM-NotificationTrigger.
+[2025-12-31 13:04:44.008] [LOG] No helper found for module: MMM-SpeechHotword.
+[2025-12-31 13:04:48.766] [LOG] Initializing new module helper ...
+[2025-12-31 13:04:48.770] [LOG] Module helper loaded: MMM-AssistantMk2
+[2025-12-31 13:04:48.774] [LOG] No helper found for module: alert.
+[2025-12-31 13:04:48.785] [LOG] No helper found for module: clock.
+[2025-12-31 13:04:49.986] [LOG] Initializing new module helper ...
+[2025-12-31 13:04:49.989] [LOG] Module helper loaded: calendar
+[2025-12-31 13:04:49.997] [LOG] No helper found for module: weather.
+[2025-12-31 13:04:50.003] [LOG] All module helpers loaded.
+[2025-12-31 13:04:50.098] [LOG] Starting server on port 8080 ...  
+[2025-12-31 13:04:50.239] [LOG] Server started ...
+[2025-12-31 13:04:50.244] [LOG] Connecting socket for: MMM-AssistantMk2
+[2025-12-31 13:04:50.249] [LOG] MMM-AssistantMk2 started
+[2025-12-31 13:04:50.261] [LOG] Connecting socket for: calendar
+[2025-12-31 13:04:50.266] [LOG] Starting node helper for: calendar
+[2025-12-31 13:04:50.271] [LOG] Sockets connected & modules started ...
+[2025-12-31 13:04:50.273] [LOG]  
+Ready to go! Please point your browser to: http://localhost:8080
+[2025-12-31 13:05:46.643] [LOG] Create new calendarfetcher for url: https://calendar.google.com/calendar/ical/horatiousaharris%40gmail.com/private-69fd1f9a040d7228d85e5a7a1bfc3f69/basic.ics - Interval: 3600000
+[2025-12-31 13:05:55.387] [INFO] Calendar-Fetcher: Broadcasting 0 events.
+^C[2025-12-31 13:09:04.201] [LOG] [SIGINT] Received. Shutting down server...
+[2025-12-31 13:09:04.248] [LOG] Stopping module helper: MMM-AssistantMk2
+[2025-12-31 13:09:04.254] [LOG] Stopping module helper: calendar
+[2025-12-31 13:09:04.286] [LOG] Node_helpers stopped ...
