@@ -3,7 +3,7 @@ Module.register("MMM-WakeAnimation", {
 		animationSpeed: 1000,
 		gifUrl: "modules/MMM-WakeAnimation/public/mirror.gif",
 		showOnWake: true,
-		displayTime: 3000 // 3 sec
+		displayTime: 7000 // 3 sec
 	},
 
 	start: function () {
@@ -38,7 +38,7 @@ Module.register("MMM-WakeAnimation", {
 		console.log("MMM-WakeAnimation received:", notification); // Added logging
 
 		// MMM-AssistantMk2 notifications
-		if (notification === "ASSISTANT_LISTEN" || notification === "ASSISTANT_THINK") {
+		if (notification === "ASSISTANT_LISTENING" || notification === "ASSISTANT_THINK") {
 			this.showAnimation();
 		}
 
