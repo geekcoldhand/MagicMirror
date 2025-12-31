@@ -59,3 +59,18 @@ MMM-Hotword.js:75 MMM-Hotword: Recognition ended, restarting...
 weather.js:163 New weather information available.
 MMM-WakeAnimation.js:38 MMM-WakeAnimation received: CURRENTWEATHER_TYPE
 MMM-WakeAnimation.js:38 MMM-WakeAnimation received: WEATHER_UPDATED
+
+Hook: []length: 0[[Prototype]]: Array(0)
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: ASSISTANT_DEACTIVATED
+MMM-WakeAnimation.js:71 Hiding wake animation
+MMM-NotificationTrigger.js:14 MMM-NotificationTrigger: Trigger matched - ASSISTANT_DEACTIVATED
+MMM-NotificationTrigger.js:50 MMM-NotificationTrigger: Firing HOTWORD_RESUME
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: HOTWORD_RESUME
+MMM-Hotword.js:126 MMM-Hotword: Resuming hotword detection
+weather.js:163 New weather information available.
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: CURRENTWEATHER_TYPE
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: WEATHER_UPDATED
+
+[2025-12-30 21:20:32.386] [LOG] end-of-utterance
+[2025-12-30 21:20:32.446] [LOG] Assistant Text Response:  
+[2025-12-30 21:20:32.486] [LOG] Conversation Completed
