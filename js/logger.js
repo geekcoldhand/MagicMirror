@@ -24,9 +24,9 @@
 						} else if (method === "warn") {
 							label = colors.yellow(label);
 						} else if (method === "debug") {
-							label = colors.bgBlue(label);
+							label = colors.white(label);
 						} else if (method === "log") {
-							label = colors.blue(label);
+							label = colors.green(label);
 						}
 						return label;
 					},
@@ -38,7 +38,7 @@
 						} else if (method === "warn") {
 							msg = colors.yellow(msg);
 						} else if (method === "info") {
-							msg = colors.blue(msg);
+							msg = colors.green(msg);
 						}
 						return msg;
 					}
