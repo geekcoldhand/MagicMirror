@@ -24,7 +24,7 @@
 						} else if (method === "warn") {
 							label = colors.yellow(label);
 						} else if (method === "debug") {
-							label = colors.white(label);
+							label = colors.magenta(label);
 						} else if (method === "log") {
 							label = colors.green(label);
 						}
@@ -34,7 +34,7 @@
 						const { method, defaultTokens } = arg;
 						let msg = defaultTokens.msg(arg);
 						if (method === "error") {
-							msg = colors.red(msg);
+							msg = colors.white(msg);
 						} else if (method === "warn") {
 							msg = colors.yellow(msg);
 						} else if (method === "info") {
