@@ -36,3 +36,26 @@ at process.processTicksAndRejections (node:internal/process/task_queues:77:11)
 [2025-12-30 19:10:51.603] [LOG] Stopping module helper: MMM-AssistantMk2
 [2025-12-30 19:10:51.604] [LOG] Stopping module helper: calendar
 [2025-12-30 19:10:51.609] [LOG] Node_helpers stopped ...
+
+Wake Animation module started
+MMM-WakeAnimation.js:56 Showing wake animation
+MMM-NotificationTrigger.js:7 Starting module: MMM-NotificationTrigger
+MMM-Hotword.js:12 Starting module: MMM-Hotword
+MMM-Hotword.js:99 MMM-Hotword: Started listening for hotwords
+MMM-AssistantMk2.js:88 start
+alert.js:48 Starting module: alert
+clock.js:49 Starting module: clock
+calendar.js:97 Starting module: calendar
+weatherprovider.js:35 Weather provider: OpenWeatherMap initialized.
+weatherprovider.js:46 Weather provider: OpenWeatherMap started.
+main.js:482 All modules started!
+MMM-WakeAnimation.js:38 MMM-WakeAnimation received: ALL_MODULES_STARTED
+MMM-WakeAnimation.js:38 MMM-WakeAnimation received: MODULE_DOM_CREATED
+MMM-WakeAnimation.js:38 MMM-WakeAnimation received: DOM_OBJECTS_CREATED
+MMM-WakeAnimation.js:73 Hiding wake animation
+MMM-Hotword.js:61 MMM-Hotword: Recognition error - network
+recognition.onerror @ MMM-Hotword.js:61
+MMM-Hotword.js:75 MMM-Hotword: Recognition ended, restarting...
+weather.js:163 New weather information available.
+MMM-WakeAnimation.js:38 MMM-WakeAnimation received: CURRENTWEATHER_TYPE
+MMM-WakeAnimation.js:38 MMM-WakeAnimation received: WEATHER_UPDATED
