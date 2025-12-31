@@ -109,6 +109,8 @@ code: 'ERR_DLOPEN_FAILED'
 [2025-12-31 08:50:58.215] [ERROR] MagicMirror² will not quit, but it might be a good idea to check why this happened. Maybe no internet connection?
 [2025-12-31 08:50:58.221] [ERROR] If you think this really is an issue, please open an issue on GitHub: https://github.com/MichMich/MagicMirror/issues
 geek-pi@raspberrypi:~/MagicMirror $
+
+broswer console:
 Starting module: MMM-SpeechHotword
 MMM-AssistantMk2.js:88 start
 alert.js:48 Starting module: alert
@@ -127,6 +129,7 @@ MMM-AssistantMk2.js:158 youtube error: 2
 MMM-WakeAnimation.js:36 MMM-WakeAnimation received: CALENDAR_EVENTS
 741MMM-SpeechHotword.js:41 MMM-SpeechHotword: Listening
 
+server logs:
 geek-pi@raspberrypi:~/MagicMirror $ npm run server
 
 > magicmirror@2.24.0 server

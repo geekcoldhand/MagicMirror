@@ -3,23 +3,20 @@ Module.register("MMM-SpeechHotword", {
 		hotwords: ["mirror mirror", "hey mirror", "mirror"],
 		language: "en-US",
 		continuous: true,
-		interimResults: true,
-		maxAlternatives: 5,
+		interimResults: false, // 🔑 MUST be false on Pi
+		maxAlternatives: 1,
 		detectionCooldown: 2000,
 		assistantProfile: "default"
 	},
 
 	start: function () {
 		Log.info("Starting module: " + this.name);
-
 		this.recognition = null;
 		this.isListening = false;
 		this.isPaused = false;
 		this.lastDetectionTime = 0;
 
-		setTimeout(() => {
-			this.setupRecognition();
-		}, 3000);
+		setTimeout(() => this.setupRecognition(), 3000);
 	},
 
 	setupRecognition: function () {
@@ -33,7 +30,7 @@ Module.register("MMM-SpeechHotword", {
 		this.recognition = new SpeechRecognition();
 		this.recognition.lang = this.config.language;
 		this.recognition.continuous = this.config.continuous;
-		this.recognition.interimResults = this.config.interimResults;
+		this.recognition.interimResults = false;
 		this.recognition.maxAlternatives = this.config.maxAlternatives;
 
 		this.recognition.onstart = () => {
@@ -48,22 +45,26 @@ Module.register("MMM-SpeechHotword", {
 			if (now - this.lastDetectionTime < this.config.detectionCooldown) return;
 
 			for (let i = event.resultIndex; i < event.results.length; i++) {
-				for (let j = 0; j < event.results[i].length; j++) {
-					const transcript = event.results[i][j].transcript.toLowerCase().trim();
+				const result = event.results[i];
 
-					for (const hotword of this.config.hotwords) {
-						if (transcript.includes(hotword.toLowerCase())) {
-							this.lastDetectionTime = now;
+				// 🔑 FINAL results ONLY
+				if (!result.isFinal) continue;
 
-							Log.info(`MMM-SpeechHotword: Detected "${hotword}" in "${transcript}"`);
+				const transcript = result[0].transcript.toLowerCase().trim();
+				console.log("Speech final:", transcript);
 
-							// 🔑 CORRECT SIGNAL FOR MMM-AssistantMk2
-							this.sendNotification("ASSISTANT_ACTIVATE", {
-								profile: this.config.assistantProfile
-							});
+				for (const hotword of this.config.hotwords) {
+					if (transcript.includes(hotword.toLowerCase())) {
+						this.lastDetectionTime = now;
 
-							return;
-						}
+						Log.info(`MMM-SpeechHotword: Hotword "${hotword}" detected`);
+
+						// 🔑 CORRECT Assistant signal
+						this.sendNotification("ASSISTANT_ACTIVATE", {
+							profile: this.config.assistantProfile
+						});
+
+						return;
 					}
 				}
 			}
@@ -85,15 +86,6 @@ Module.register("MMM-SpeechHotword", {
 				setTimeout(() => this.startListening(), 500);
 			}
 		};
-
-		// Chromium sometimes needs one gesture — this prevents silent failure
-		document.addEventListener(
-			"click",
-			() => {
-				if (!this.isListening) this.startListening();
-			},
-			{ once: true }
-		);
 
 		this.startListening();
 	},
