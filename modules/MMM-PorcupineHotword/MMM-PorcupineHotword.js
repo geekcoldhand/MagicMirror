@@ -1,27 +1,33 @@
-Module.register("MMM-SnowboyHotword", {
+Module.register("MMM-PorcupineHotword", {
 	defaults: {
-		modelPath: "modules/MMM-SnowboyHotword/resources/mirror_mirror.pmdl",
-		resourcePath: "modules/MMM-SnowboyHotword/resources/common.res",
-		sensitivity: "0.5",
-		audioGain: 2.0,
-		recordProgram: "arecord",
-		device: null // or "plughw:1" for USB mic
+		accessKey: "", // Get free key from https://console.picovoice.ai/
+		deviceIndex: -1, // -1 for default microphone
+		keywords: ["jarvis", "computer"] // Built-in keywords (free)
 	},
 
 	start: function () {
 		Log.info("Starting module: " + this.name);
 		this.isPaused = false;
+
+		if (!this.config.accessKey) {
+			Log.error("Porcupine access key required! Get one free at https://console.picovoice.ai/");
+			return;
+		}
+
 		this.sendSocketNotification("START_HOTWORD", this.config);
 	},
 
 	socketNotificationReceived: function (notification, payload) {
 		if (notification === "HOTWORD_DETECTED") {
-			Log.info("Hotword detected!");
+			Log.info("Hotword detected: " + payload.hotword);
 			if (!this.isPaused) {
 				this.sendNotification("HOTWORD_DETECTED", payload);
 			}
 		} else if (notification === "HOTWORD_ERROR") {
 			Log.error("Hotword error: " + payload.error);
+			if (payload.tip) {
+				Log.info("Tip: " + payload.tip);
+			}
 		} else if (notification === "HOTWORD_STARTED") {
 			Log.info("Hotword detection started");
 		}
