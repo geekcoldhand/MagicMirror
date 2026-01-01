@@ -47,7 +47,7 @@ Module.register("MMM-SpeechHotword", {
 			for (let i = event.resultIndex; i < event.results.length; i++) {
 				const result = event.results[i];
 
-				// 🔑 FINAL results ONLY
+				// FINAL results ONLY
 				if (!result.isFinal) continue;
 
 				const transcript = result[0].transcript.toLowerCase().trim();
@@ -56,7 +56,7 @@ Module.register("MMM-SpeechHotword", {
 				for (const hotword of this.config.hotwords) {
 					if (transcript.includes(hotword.toLowerCase())) {
 						this.lastDetectionTime = now;
-
+						console.log(`✅ HOTWORD MATCH! "${hotword}" found in "${transcript}"`);
 						Log.info(`MMM-SpeechHotword: Hotword "${hotword}" detected`);
 
 						// 🔑 CORRECT Assistant signal
@@ -67,6 +67,7 @@ Module.register("MMM-SpeechHotword", {
 						return;
 					}
 				}
+				console.log(`❌ No hotword matched in: "${transcript}"`);
 			}
 		};
 
@@ -86,6 +87,9 @@ Module.register("MMM-SpeechHotword", {
 				setTimeout(() => this.startListening(), 500);
 			}
 		};
+		this.recognition.addEventListener("result", (e) => {
+			console.log("🔊 RAW SPEECH EVENT:", e.results[e.results.length - 1][0].transcript);
+		});
 
 		this.startListening();
 	},
