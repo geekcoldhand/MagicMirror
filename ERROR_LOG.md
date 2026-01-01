@@ -165,3 +165,69 @@ Ready to go! Please point your browser to: http://localhost:8080
 [2025-12-31 13:09:04.248] [LOG] Stopping module helper: MMM-AssistantMk2
 [2025-12-31 13:09:04.254] [LOG] Stopping module helper: calendar
 [2025-12-31 13:09:04.286] [LOG] Node_helpers stopped ...
+
+modules/default/weather/weatherutils.js
+loader.js:162 Load script: modules/default/weather/weatherprovider.js
+loader.js:162 Load script: modules/default/weather/weatherobject.js
+loader.js:233 File already loaded: suncalc.js
+loader.js:162 Load script: modules/default/weather/providers/openweathermap.js
+loader.js:139 Scripts loaded for: weather
+loader.js:233 File already loaded: font-awesome.css
+loader.js:177 Load stylesheet: vendor/node_modules/weathericons/css/weather-icons.css
+loader.js:177 Load stylesheet: modules/default/weather/weather.css
+loader.js:142 Styles loaded for: weather
+loader.js:145 Translations loaded for: weather
+loader.js:177 Load stylesheet: css/custom.css
+MMM-WakeAnimation.js:10 Wake Animation module started
+MMM-NotificationTrigger.js:7 Starting module: MMM-NotificationTrigger
+MMM-SpeechHotword.js:13 Starting module: MMM-SpeechHotword
+MMM-AssistantMk2.js:88 start
+alert.js:48 Starting module: alert
+clock.js:49 Starting module: clock
+calendar.js:97 Starting module: calendar
+weatherprovider.js:35 Weather provider: OpenWeatherMap initialized.
+weatherprovider.js:46 Weather provider: OpenWeatherMap started.
+main.js:482 All modules started!
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: ALL_MODULES_STARTED
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: MODULE_DOM_CREATED
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: DOM_OBJECTS_CREATED
+weather.js:163 New weather information available.
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: CURRENTWEATHER_TYPE
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: WEATHER_UPDATED
+11MMM-SpeechHotword.js:38 MMM-SpeechHotword: Listening
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: CALENDAR_EVENTS
+4MMM-SpeechHotword.js:38 MMM-SpeechHotword: Listening
+MMM-AssistantMk2.js:158 youtube error: 2
+39MMM-SpeechHotword.js:38 MMM-SpeechHotword: Listening
+
+eek-pi@raspberrypi:~/MagicMirror $ npm run server
+
+> magicmirror@2.24.0 server
+> node ./serveronly
+
+[2025-12-31 19:04:35.415] [LOG] Starting MagicMirror: v2.24.0
+[2025-12-31 19:04:35.469] [LOG] Loading config ...
+[2025-12-31 19:04:35.489] [DEBUG] config template file not exists, no envsubst
+[2025-12-31 19:04:35.584] [LOG] Loading module helpers ...
+[2025-12-31 19:04:35.589] [LOG] No helper found for module: MMM-WakeAnimation.
+[2025-12-31 19:04:35.607] [LOG] No helper found for module: MMM-NotificationTrigger.
+[2025-12-31 19:04:35.616] [LOG] No helper found for module: MMM-SpeechHotword.
+[2025-12-31 19:04:40.788] [LOG] Initializing new module helper ...
+[2025-12-31 19:04:40.793] [LOG] Module helper loaded: MMM-AssistantMk2
+[2025-12-31 19:04:40.804] [LOG] No helper found for module: alert.
+[2025-12-31 19:04:40.819] [LOG] No helper found for module: clock.
+[2025-12-31 19:04:42.014] [LOG] Initializing new module helper ...
+[2025-12-31 19:04:42.016] [LOG] Module helper loaded: calendar
+[2025-12-31 19:04:42.023] [LOG] No helper found for module: weather.
+[2025-12-31 19:04:42.028] [LOG] All module helpers loaded.
+[2025-12-31 19:04:42.112] [LOG] Starting server on port 8080 ...  
+[2025-12-31 19:04:42.227] [LOG] Server started ...
+[2025-12-31 19:04:42.233] [LOG] Connecting socket for: MMM-AssistantMk2
+[2025-12-31 19:04:42.239] [LOG] MMM-AssistantMk2 started
+[2025-12-31 19:04:42.249] [LOG] Connecting socket for: calendar
+[2025-12-31 19:04:42.251] [LOG] Starting node helper for: calendar
+[2025-12-31 19:04:42.254] [LOG] Sockets connected & modules started ...
+[2025-12-31 19:04:42.256] [LOG]  
+Ready to go! Please point your browser to: http://localhost:8080
+[2025-12-31 19:05:19.537] [LOG] Create new calendarfetcher for url: https://calendar.google.com/calendar/ical/horatiousaharris%40gmail.com/private-69fd1f9a040d7228d85e5a7a1bfc3f69/basic.ics - Interval: 3600000
+[2025-12-31 19:05:32.565] [INFO] Calendar-Fetcher: Broadcasting 0 events.
