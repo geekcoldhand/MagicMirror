@@ -231,3 +231,11 @@ eek-pi@raspberrypi:~/MagicMirror $ npm run server
 Ready to go! Please point your browser to: http://localhost:8080
 [2025-12-31 19:05:19.537] [LOG] Create new calendarfetcher for url: https://calendar.google.com/calendar/ical/horatiousaharris%40gmail.com/private-69fd1f9a040d7228d85e5a7a1bfc3f69/basic.ics - Interval: 3600000
 [2025-12-31 19:05:32.565] [INFO] Calendar-Fetcher: Broadcasting 0 events.
+
+DISPLAY=:0 chromium-browser \
+ --kiosk \
+ --autoplay-policy=no-user-gesture-required \
+ --use-fake-ui-for-media-stream \
+ --enable-speech-dispatcher \
+ --disable-features=AudioServiceSandbox \
+ http://localhost:8080
