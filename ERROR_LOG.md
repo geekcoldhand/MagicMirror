@@ -411,3 +411,37 @@ loadModules @ loader.js:221
 init @ main.js:471
 await in init (async)
 (anonymous) @ main.js:593
+
+
+
+
+Error: Cannot find module '.eslintrc.js'
+Require stack:
+- /home/geek-pi/MagicMirror/node_modules/prettier/index.js
+- /home/geek-pi/MagicMirror/node_modules/pretty-quick/dist/isSupportedExtension.js
+- /home/geek-pi/MagicMirror/node_modules/pretty-quick/dist/index.js
+- /home/geek-pi/MagicMirror/node_modules/pretty-quick/dist/cli.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1077:15)
+    at resolve (node:internal/modules/cjs/helpers:127:19)
+    at Object.transform (/home/geek-pi/MagicMirror/node_modules/prettier/index.js:18425:34)
+    at run (/home/geek-pi/MagicMirror/node_modules/prettier/third-party.js:8511:47)
+    at cacheWrapperSync (/home/geek-pi/MagicMirror/node_modules/prettier/third-party.js:8303:22)
+    at ExplorerSync.searchFromDirectorySync (/home/geek-pi/MagicMirror/node_modules/prettier/third-party.js:8515:53)
+    at ExplorerSync.searchSync (/home/geek-pi/MagicMirror/node_modules/prettier/third-party.js:8500:29)
+    at _resolveConfig (/home/geek-pi/MagicMirror/node_modules/prettier/index.js:18468:54)
+    at resolveConfig.sync (/home/geek-pi/MagicMirror/node_modules/prettier/index.js:18488:46)
+    at /home/geek-pi/MagicMirror/node_modules/pretty-quick/dist/isSupportedExtension.js:6:43 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/home/geek-pi/MagicMirror/node_modules/prettier/index.js',
+    '/home/geek-pi/MagicMirror/node_modules/pretty-quick/dist/isSupportedExtension.js',
+    '/home/geek-pi/MagicMirror/node_modules/pretty-quick/dist/index.js',
+    '/home/geek-pi/MagicMirror/node_modules/pretty-quick/dist/cli.js'
+  ]
+}
+
+Node.js v18.17.1
+husky - pre-commit hook exited with code 1 (error)
+geek-pi@raspberrypi:~/MagicMirror $ git rm -rf node^C
+geek-pi@raspberrypi:~/MagicMirror $ git rm -rf node_modules/prettier
+fatal: pathspec 'node_modules/prettier' did not match any files
