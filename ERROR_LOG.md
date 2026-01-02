@@ -202,60 +202,212 @@ MMM-AssistantMk2.js:158 youtube error: 2
 
 eek-pi@raspberrypi:~/MagicMirror $ npm run server
 
-> magicmirror@2.24.0 server
-> node ./serveronly
+> magicmirror@2.24.0 serv
 
-[2025-12-31 19:04:35.415] [LOG] Starting MagicMirror: v2.24.0
-[2025-12-31 19:04:35.469] [LOG] Loading config ...
-[2025-12-31 19:04:35.489] [DEBUG] config template file not exists, no envsubst
-[2025-12-31 19:04:35.584] [LOG] Loading module helpers ...
-[2025-12-31 19:04:35.589] [LOG] No helper found for module: MMM-WakeAnimation.
-[2025-12-31 19:04:35.607] [LOG] No helper found for module: MMM-NotificationTrigger.
-[2025-12-31 19:04:35.616] [LOG] No helper found for module: MMM-SpeechHotword.
-[2025-12-31 19:04:40.788] [LOG] Initializing new module helper ...
-[2025-12-31 19:04:40.793] [LOG] Module helper loaded: MMM-AssistantMk2
-[2025-12-31 19:04:40.804] [LOG] No helper found for module: alert.
-[2025-12-31 19:04:40.819] [LOG] No helper found for module: clock.
-[2025-12-31 19:04:42.014] [LOG] Initializing new module helper ...
-[2025-12-31 19:04:42.016] [LOG] Module helper loaded: calendar
-[2025-12-31 19:04:42.023] [LOG] No helper found for module: weather.
-[2025-12-31 19:04:42.028] [LOG] All module helpers loaded.
-[2025-12-31 19:04:42.112] [LOG] Starting server on port 8080 ...  
-[2025-12-31 19:04:42.227] [LOG] Server started ...
-[2025-12-31 19:04:42.233] [LOG] Connecting socket for: MMM-AssistantMk2
-[2025-12-31 19:04:42.239] [LOG] MMM-AssistantMk2 started
-[2025-12-31 19:04:42.249] [LOG] Connecting socket for: calendar
-[2025-12-31 19:04:42.251] [LOG] Starting node helper for: calendar
-[2025-12-31 19:04:42.254] [LOG] Sockets connected & modules started ...
-[2025-12-31 19:04:42.256] [LOG]  
-Ready to go! Please point your browser to: http://localhost:8080
-[2025-12-31 19:05:19.537] [LOG] Create new calendarfetcher for url: https://calendar.google.com/calendar/ical/horatiousaharris%40gmail.com/private-69fd1f9a040d7228d85e5a7a1bfc3f69/basic.ics - Interval: 3600000
-[2025-12-31 19:05:32.565] [INFO] Calendar-Fetcher: Broadcasting 0 events.
 
-DISPLAY=:0 chromium-browser \
- --kiosk \
- --autoplay-policy=no-user-gesture-required \
- --use-fake-ui-for-media-stream \
- --enable-speech-dispatcher \
- --disable-features=AudioServiceSandbox \
- http://localhost:8080
 
-pcm.!default {
-type asym
-capture.pcm "mic"
-playback.pcm "speaker"
-}
-
-pcm.mic {
-type plug
-slave {
-pcm "hw:2,0"  
- }
-}
-
-pcm.speaker {
-type plug
-slave {
-pcm "hw:1,0"
-}
-}
+main.js:465 Initializing MagicMirror².
+translator.js:120 Loading core translation file: translations/en.json
+translator.js:136 Loading core translation fallback file: translations/en.json
+loader.js:162 Load script: modules/MMM-WakeAnimation/MMM-WakeAnimation.js
+module.js:481 Module registered: MMM-WakeAnimation
+loader.js:135 Bootstrapping module: MMM-WakeAnimation
+loader.js:139 Scripts loaded for: MMM-WakeAnimation
+loader.js:177 Load stylesheet: modules/MMM-WakeAnimation/MMM-WakeAnimation.css
+loader.js:142 Styles loaded for: MMM-WakeAnimation
+loader.js:145 Translations loaded for: MMM-WakeAnimation
+loader.js:162 Load script: modules/MMM-NotificationTrigger/MMM-NotificationTrigger.js
+loader.js:173     GET http://localhost:8080/modules/MMM-NotificationTrigger/MMM-NotificationTrigger.js net::ERR_ABORTED 404 (Not Found)
+(anonymous) @ loader.js:173
+loadFile @ loader.js:161
+loadModule @ loader.js:123
+loadNextModule @ loader.js:209
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadModules @ loader.js:221
+init @ main.js:471
+await in init (async)
+(anonymous) @ main.js:593
+localhost/:1 Refused to execute script from 'http://localhost:8080/modules/MMM-NotificationTrigger/MMM-NotificationTrigger.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled.
+loader.js:170 Error on loading script: modules/MMM-NotificationTrigger/MMM-NotificationTrigger.js
+script.onerror @ loader.js:170
+error (async)
+(anonymous) @ loader.js:169
+loadFile @ loader.js:161
+loadModule @ loader.js:123
+loadNextModule @ loader.js:209
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadModules @ loader.js:221
+init @ main.js:471
+await in init (async)
+(anonymous) @ main.js:593
+loader.js:162 Load script: modules/MMM-SpeechHotword/MMM-SpeechHotword.js
+module.js:481 Module registered: MMM-SpeechHotword
+loader.js:135 Bootstrapping module: MMM-SpeechHotword
+loader.js:139 Scripts loaded for: MMM-SpeechHotword
+loader.js:142 Styles loaded for: MMM-SpeechHotword
+loader.js:145 Translations loaded for: MMM-SpeechHotword
+loader.js:162 Load script: modules/MMM-AssistantMk2/MMM-AssistantMk2.js
+module.js:481 Module registered: MMM-AssistantMk2
+loader.js:135 Bootstrapping module: MMM-AssistantMk2
+loader.js:139 Scripts loaded for: MMM-AssistantMk2
+loader.js:177 Load stylesheet: modules/MMM-AssistantMk2/MMM-AssistantMk2.css
+loader.js:142 Styles loaded for: MMM-AssistantMk2
+loader.js:145 Translations loaded for: MMM-AssistantMk2
+loader.js:162 Load script: modules/default/alert/alert.js
+module.js:481 Module registered: alert
+loader.js:135 Bootstrapping module: alert
+loader.js:162 Load script: modules/default/alert/notificationFx.js
+loader.js:139 Scripts loaded for: alert
+loader.js:177 Load stylesheet: vendor/css/font-awesome.css
+loader.js:177 Load stylesheet: modules/default/alert/./styles/notificationFx.css
+loader.js:177 Load stylesheet: modules/default/alert/./styles/center.css
+loader.js:142 Styles loaded for: alert
+translator.js:103 alert - Load translation: translations/en.json
+translator.js:103 alert - Load translation fallback: translations/bg.json
+loader.js:145 Translations loaded for: alert
+loader.js:162 Load script: modules/default/clock/clock.js
+module.js:481 Module registered: clock
+loader.js:135 Bootstrapping module: clock
+loader.js:162 Load script: vendor/node_modules/moment/min/moment-with-locales.js
+loader.js:162 Load script: vendor/node_modules/moment-timezone/builds/moment-timezone-with-data.js
+loader.js:162 Load script: vendor/node_modules/suncalc/suncalc.js
+loader.js:139 Scripts loaded for: clock
+loader.js:177 Load stylesheet: modules/default/clock/clock_styles.css
+loader.js:142 Styles loaded for: clock
+loader.js:145 Translations loaded for: clock
+loader.js:162 Load script: modules/default/calendar/calendar.js
+module.js:473 Check MagicMirror² version for module 'calendar' - Minimum version:  2.1.0 - Current version: 2.24.0
+module.js:475 Version is ok!
+module.js:481 Module registered: calendar
+loader.js:135 Bootstrapping module: calendar
+loader.js:162 Load script: modules/default/calendar/calendarutils.js
+loader.js:233 File already loaded: moment.js
+loader.js:139 Scripts loaded for: calendar
+loader.js:177 Load stylesheet: modules/default/calendar/calendar.css
+loader.js:233 File already loaded: font-awesome.css
+loader.js:142 Styles loaded for: calendar
+loader.js:145 Translations loaded for: calendar
+loader.js:162 Load script: modules/default/weather/weather.js
+module.js:481 Module registered: weather
+loader.js:135 Bootstrapping module: weather
+loader.js:233 File already loaded: moment.js
+loader.js:162 Load script: modules/default/weather/../utils.js
+loader.js:162 Load script: modules/default/weather/weatherutils.js
+loader.js:162 Load script: modules/default/weather/weatherprovider.js
+loader.js:162 Load script: modules/default/weather/weatherobject.js
+loader.js:233 File already loaded: suncalc.js
+loader.js:162 Load script: modules/default/weather/providers/openweathermap.js
+loader.js:139 Scripts loaded for: weather
+loader.js:233 File already loaded: font-awesome.css
+loader.js:177 Load stylesheet: vendor/node_modules/weathericons/css/weather-icons.css
+loader.js:177 Load stylesheet: modules/default/weather/weather.css
+loader.js:142 Styles loaded for: weather
+loader.js:145 Translations loaded for: weather
+loader.js:177 Load stylesheet: css/custom.css
+localhost/:1 Refused to apply style from 'http://localhost:8080/css/custom.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled.
+loader.js:187 Error on loading stylesheet: css/custom.css
+stylesheet.onerror @ loader.js:187
+error (async)
+(anonymous) @ loader.js:186
+loadFile @ loader.js:176
+loadNextModule @ loader.js:216
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadModules @ loader.js:221
+init @ main.js:471
+await in init (async)
+(anonymous) @ main.js:593
+MMM-WakeAnimation.js:10 Wake Animation module started
+MMM-SpeechHotword.js:13 Starting module: MMM-SpeechHotword
+MMM-AssistantMk2.js:88 start
+alert.js:48 Starting module: alert
+clock.js:49 Starting module: clock
+calendar.js:97 Starting module: calendar
+weatherprovider.js:35 Weather provider: OpenWeatherMap initialized.
+weatherprovider.js:46 Weather provider: OpenWeatherMap started.
+main.js:482 All modules started!
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: ALL_MODULES_STARTED
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: MODULE_DOM_CREATED
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: DOM_OBJECTS_CREATED
+MMM-SpeechHotword.js:38 MMM-SpeechHotword: Listening
+weather.js:163 New weather information available.
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: CURRENTWEATHER_TYPE
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: WEATHER_UPDATED
+MMM-SpeechHotword.js:75 MMM-SpeechHotword error: network
+recognition.onerror @ MMM-SpeechHotword.js:75
+error (async)
+setupRecognition @ MMM-SpeechHotword.js:74
+(anonymous) @ MMM-SpeechHotword.js:19
+setTimeout (async)
+start @ MMM-SpeechHotword.js:19
+startModules @ loader.js:25
+loadNextModule @ loader.js:218
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadModules @ loader.js:221
+init @ main.js:471
+await in init (async)
+(anonymous) @ main.js:593
+5Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('<URL>') does not match the recipient window's origin ('<URL>').
+MMM-SpeechHotword.js:38 MMM-SpeechHotword: Listening
+MMM-SpeechHotword.js:75 MMM-SpeechHotword error: network
+recognition.onerror @ MMM-SpeechHotword.js:75
+error (async)
+setupRecognition @ MMM-SpeechHotword.js:74
+(anonymous) @ MMM-SpeechHotword.js:19
+setTimeout (async)
+start @ MMM-SpeechHotword.js:19
+startModules @ loader.js:25
+loadNextModule @ loader.js:218
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadNextModule @ loader.js:211
+await in loadNextModule (async)
+loadModules @ loader.js:221
+init @ main.js:471
+await in init (async)
+(anonymous) @ main.js:593
