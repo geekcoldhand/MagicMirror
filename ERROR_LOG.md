@@ -58,69 +58,49 @@ COPY BELOW
 
 #
 
-const NodeHelper = require("node_helper");
-const { spawn } = require("child_process");
-const http = require("http");
+cd ~/MagicMirror/modules/MMM-VoskHotword
 
-module.exports = NodeHelper.create({
-start: function() {
-console.log("Starting MMM-VoskHotword (Python backend)");
-this.pythonProcess = null;
-this.setupHttpServer();
-},
+# Determine your architecture
 
-    setupHttpServer: function() {
-        const server = http.createServer((req, res) => {
-            if (req.method === "POST" && req.url === "/vosk-hotword") {
-                let body = "";
-                req.on("data", chunk => { body += chunk; });
-                req.on("end", () => {
-                    try {
-                        const data = JSON.parse(body);
-                        console.log("✅ Hotword from Python:", data.hotword);
-                        this.sendSocketNotification("HOTWORD_DETECTED", data);
-                        res.writeHead(200);
-                        res.end("OK");
-                    } catch (err) {
-                        res.writeHead(400);
-                        res.end("Bad Request");
-                    }
-                });
-            } else {
-                res.writeHead(404);
-                res.end();
-            }
-        });
+ARCH=$(uname -m)
+echo "Your architecture: $ARCH"
 
-        server.listen(8080, () => {
-            console.log("🌐 Vosk HTTP server listening");
-        });
-    },
+# Download Vosk library for your architecture
 
-    socketNotificationReceived: function(notification, payload) {
-        if (notification === "START_VOSK") {
-            this.startPythonDetector();
-        }
-    },
+if [ "$ARCH" = "aarch64" ]; then # 64-bit ARM
+wget https://github.com/alphacep/vosk-api/releases/download/v0.3.45/vosk-linux-aarch64-0.3.45.zip
+unzip vosk-linux-aarch64-0.3.45.zip
 
-    startPythonDetector: function() {
-        const pythonPath = __dirname + "/vosk_detector.py";
-        this.pythonProcess = spawn("python3", [pythonPath]);
+    # Move to correct location
+    mkdir -p node_modules/vosk/lib/linux-aarch64
+    cp -r vosk-linux-aarch64-0.3.45/* node_modules/vosk/lib/linux-aarch64/
+    rm -rf vosk-linux-aarch64-0.3.45*
 
-        this.pythonProcess.stdout.on("data", (data) => {
-            console.log(`[Python] ${data.toString().trim()}`);
-        });
+elif [ "$ARCH" = "armv7l" ]; then # 32-bit ARM (Pi 2/3)
+wget https://github.com/alphacep/vosk-api/releases/download/v0.3.45/vosk-linux-armv7l-0.3.45.zip
+unzip vosk-linux-armv7l-0.3.45.zip
 
-        this.pythonProcess.stderr.on("data", (data) => {
-            console.error(`[Python Error] ${data.toString().trim()}`);
-        });
+    mkdir -p node_modules/vosk/lib/linux-armv7l
+    cp -r vosk-linux-armv7l-0.3.45/* node_modules/vosk/lib/linux-armv7l/
+    rm -rf vosk-linux-armv7l-0.3.45*
 
-        this.pythonProcess.on("close", (code) => {
-            console.log(`Python detector exited with code ${code}`);
-        });
-    }
+elif [ "$ARCH" = "armv6l" ]; then
+echo "⚠️ Pi Zero/1 (ARMv6) not officially supported by Vosk"
+echo "Try using ARMv7 binaries (may work on some Pi Zero 2 W)"
+wget https://github.com/alphacep/vosk-api/releases/download/v0.3.45/vosk-linux-armv7l-0.3.45.zip
+unzip vosk-linux-armv7l-0.3.45.zip
 
-});
+    mkdir -p node_modules/vosk/lib/linux-armv7l
+    cp -r vosk-linux-armv7l-0.3.45/* node_modules/vosk/lib/linux-armv7l/
+    rm -rf vosk-linux-armv7l-0.3.45*
+
+else
+echo "Unknown architecture: $ARCH"
+fi
+
+# Verify installation
+
+ls -lh node_modules/vosk/lib/linux-\*/
 
 #
 
