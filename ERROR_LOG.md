@@ -47,3 +47,77 @@ npm install https://github.com/alphacep/vosk-api/releases/download/v0.3.45/vosk-
 npm install mic@^2.1.2
 
 ls -lh node_modules/vosk/lib/
+
+COPY BELOW
+
+#
+
+#
+
+#
+
+#
+
+const NodeHelper = require("node_helper");
+const { spawn } = require("child_process");
+const http = require("http");
+
+module.exports = NodeHelper.create({
+start: function() {
+console.log("Starting MMM-VoskHotword (Python backend)");
+this.pythonProcess = null;
+this.setupHttpServer();
+},
+
+    setupHttpServer: function() {
+        const server = http.createServer((req, res) => {
+            if (req.method === "POST" && req.url === "/vosk-hotword") {
+                let body = "";
+                req.on("data", chunk => { body += chunk; });
+                req.on("end", () => {
+                    try {
+                        const data = JSON.parse(body);
+                        console.log("✅ Hotword from Python:", data.hotword);
+                        this.sendSocketNotification("HOTWORD_DETECTED", data);
+                        res.writeHead(200);
+                        res.end("OK");
+                    } catch (err) {
+                        res.writeHead(400);
+                        res.end("Bad Request");
+                    }
+                });
+            } else {
+                res.writeHead(404);
+                res.end();
+            }
+        });
+
+        server.listen(8080, () => {
+            console.log("🌐 Vosk HTTP server listening");
+        });
+    },
+
+    socketNotificationReceived: function(notification, payload) {
+        if (notification === "START_VOSK") {
+            this.startPythonDetector();
+        }
+    },
+
+    startPythonDetector: function() {
+        const pythonPath = __dirname + "/vosk_detector.py";
+        this.pythonProcess = spawn("python3", [pythonPath]);
+
+        this.pythonProcess.stdout.on("data", (data) => {
+            console.log(`[Python] ${data.toString().trim()}`);
+        });
+
+        this.pythonProcess.stderr.on("data", (data) => {
+            console.error(`[Python Error] ${data.toString().trim()}`);
+        });
+
+        this.pythonProcess.on("close", (code) => {
+            console.log(`Python detector exited with code ${code}`);
+        });
+    }
+
+});
