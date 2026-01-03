@@ -122,3 +122,6 @@ cat > package.json << 'EOF'
 }
 }
 EOF
+
+arecord -f S16_LE -r 16000 -c 1 | \
+vosk-transcriber --model model --sample-rate 16000
