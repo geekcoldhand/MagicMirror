@@ -468,3 +468,38 @@ transition @ www.youtube.com/s/embeds/da6a6a67/www-embed-player-es6.vflset/www-e
 VM10:161 crbug/1173575, non-JS module files deprecated.
 (anonymous) @ VM10:161
 Navigated to chrome-error://chromewebdata/
+
+===
+
+[ERROR] Whoops! There was an uncaught exception...
+[2026-01-03 18:31:03.023] [ERROR] Error: Cannot find module 'vosk'
+Require stack:
+
+- /home/geek-pi/MagicMirror/modules/MMM-VoskHotword/node_helper.js
+- /home/geek-pi/MagicMirror/js/app.js
+- /home/geek-pi/MagicMirror/serveronly/index.js
+  at Module.\_resolveFilename (node:internal/modules/cjs/loader:1077:15)
+  at Module.\_resolveFilename (/home/geek-pi/MagicMirror/node_modules/module-alias/index.js:49:29)
+  at Module.\_load (node:internal/modules/cjs/loader:922:27)
+  at Module.require (node:internal/modules/cjs/loader:1143:19)
+  at require (node:internal/modules/cjs/helpers:121:18)
+  at Object.<anonymous> (/home/geek-pi/MagicMirror/modules/MMM-VoskHotword/node_helper.js:4:14)
+  at Module.\_compile (node:internal/modules/cjs/loader:1256:14)
+  at Module.\_extensions..js (node:internal/modules/cjs/loader:1310:10)
+  at Module.load (node:internal/modules/cjs/loader:1119:32)
+  at Module.\_load (node:internal/modules/cjs/loader:960:12)
+  at Module.require (node:internal/modules/cjs/loader:1143:19)
+  at require (node:internal/modules/cjs/helpers:121:18)
+  at loadModule (/home/geek-pi/MagicMirror/js/app.js:180:19)
+  at loadModules (/home/geek-pi/MagicMirror/js/app.js:210:10)
+  at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+  at async App.start (/home/geek-pi/MagicMirror/js/app.js:258:3) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+  '/home/geek-pi/MagicMirror/modules/MMM-VoskHotword/node_helper.js',
+  '/home/geek-pi/MagicMirror/js/app.js',
+  '/home/geek-pi/MagicMirror/serveronly/index.js'
+  ]
+  }
+  [2026-01-03 18:31:03.030] [ERROR] MagicMirror² will not quit, but it might be a good idea to check why this happened. Maybe no internet connection?
+  [2026-01-03 18:31:03.031] [ERROR] If you think this really is an issu
