@@ -1,0 +1,10 @@
+{
+	"name": "mmm-vosk-hotword",
+	"version": "1.0.0",
+	"description": "Offline hotword detection using Vosk",
+	"main": "node_helper.js",
+	"dependencies": {
+		"vosk": "^0.3.38",
+		"mic": "^2.1.2"
+	}
+}
