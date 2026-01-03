@@ -1,5 +1,6 @@
 const NodeHelper = require("node_helper");
 const mic = require("mic");
+const vosk = require("vosk");
 const fs = require("fs");
 
 module.exports = NodeHelper.create({
