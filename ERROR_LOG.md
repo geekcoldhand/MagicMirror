@@ -2,25 +2,17 @@
 sudo apt update
 sudo apt install -y python3 python3-pip python3-venv \ portaudio19-dev alsa-utils
 
-# portaudio alternative (no portaudio needed!)
-
-sudo apt-get update
-sudo apt-get install -y python3-pip python3-dev libasound2-dev
-
 # Install Python packages
 
+sudo apt-get update
+sudo apt-get install -y libportaudio2
 pip3 install vosk sounddevice requests numpy
-
-# install Vosk
-
-pip3 install --upgrade pip
-pip3 install vosk
 
 # verify
 
-python3 - <<EOF
-from vosk import Model, KaldiRecognizer
-print("Vosk OK")
+python3 - <<'EOF'
+import sounddevice as sd
+print(sd.query_devices())
 EOF
 
 # Download Small Model
