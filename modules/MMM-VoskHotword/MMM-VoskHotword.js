@@ -8,7 +8,7 @@ Module.register("MMM-VoskHotword", {
 
 	start: function () {
 		Log.info("Starting MMM-VoskHotword");
-		this.sendSocketNotification("START_VOSK", this.config);
+		this.sendSocketNotification("START_HOTWORD", this.config);
 	},
 
 	socketNotificationReceived: function (notification, payload) {
