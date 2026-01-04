@@ -41,7 +41,7 @@ Module.register("MMM-WakeAnimation", {
 		}
 
 		// Legacy support for other notification systems
-		if (notification === "ASSISTANT_ACTIVATED" || notification === "HOTWORD_DETECTED") {
+		if (notification === "ASSISTANT_ACTIVATE" || notification === "HOTWORD_DETECTED") {
 			this.showAnimation();
 		}
 
