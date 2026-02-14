@@ -1,3 +1,75 @@
+eek-pi@raspberrypi:~/MagicMirror $ npm run server
+
+> magicmirror@2.24.0 server
+> node ./serveronly
+
+[2026-02-14 09:38:17.241] [LOG] Starting MagicMirror: v2.24.0
+[2026-02-14 09:38:17.282] [LOG] Loading config ...
+[2026-02-14 09:38:17.295] [DEBUG] config template file not exists, no envsubst
+[2026-02-14 09:38:17.324] [LOG] Loading module helpers ...
+[2026-02-14 09:38:17.335] [LOG] No helper found for module: MMM-WakeAnimation.
+[2026-02-14 09:38:17.380] [LOG] Initializing new module helper ...
+[2026-02-14 09:38:17.386] [LOG] Module helper loaded: MMM-VoskHotword
+[2026-02-14 09:38:22.115] [LOG] Initializing new module helper ...
+[2026-02-14 09:38:22.120] [LOG] Module helper loaded: MMM-AssistantMk2
+[2026-02-14 09:38:22.125] [LOG] No helper found for module: alert.
+[2026-02-14 09:38:22.138] [LOG] No helper found for module: clock.
+[2026-02-14 09:38:23.316] [LOG] Initializing new module helper ...
+[2026-02-14 09:38:23.319] [LOG] Module helper loaded: calendar
+[2026-02-14 09:38:23.322] [LOG] No helper found for module: weather.
+[2026-02-14 09:38:23.325] [LOG] All module helpers loaded.
+[2026-02-14 09:38:23.398] [LOG] Starting server on port 8080 ...  
+[2026-02-14 09:38:23.491] [LOG] Server started ...
+[2026-02-14 09:38:23.496] [LOG] Connecting socket for: MMM-VoskHotword
+[2026-02-14 09:38:23.500] [LOG] Starting MMM-VoskHotword node helper
+[2026-02-14 09:38:23.513] [LOG] Connecting socket for: MMM-AssistantMk2
+[2026-02-14 09:38:23.516] [LOG] MMM-AssistantMk2 started
+[2026-02-14 09:38:23.517] [LOG] Connecting socket for: calendar
+[2026-02-14 09:38:23.519] [LOG] Starting node helper for: calendar
+[2026-02-14 09:38:23.521] [LOG] Sockets connected & modules started ...
+[2026-02-14 09:38:23.522] [LOG]  
+Ready to go! Please point your browser to: http://localhost:8080
+[2026-02-14 09:38:23.531] [LOG] ✓ HTTP server listening on port 3000
+[2026-02-14 09:38:23.537] [LOG] ✓ Endpoint: POST /vosk-hotword
+[2026-02-14 09:38:23.541] [LOG] ✓ Authentication enabled
+[2026-02-14 09:38:38.842] [LOG] Create new calendarfetcher for url: https://calendar.google.com/calendar/ical/horatiousaharris%40gmail.com/private-69fd1f9a040d7228d85e5a7a1bfc3f69/basic.ics - Interval: 3600000
+[2026-02-14 09:38:47.356] [INFO] Calendar-Fetcher: Broadcasting 2 events.
+[2026-02-14 09:39:23.352] [LOG] ═══════════════════════════════════════
+[2026-02-14 09:39:23.355] [LOG] 🎯 HOTWORD DETECTED
+[2026-02-14 09:39:23.357] [LOG] Hotword: mirror mirror
+[2026-02-14 09:39:23.358] [LOG] Transcript: mirror mirror
+[2026-02-14 09:39:23.361] [LOG] Source: pi2
+[2026-02-14 09:39:23.371] [LOG] Time: 2/14/2026, 9:39:23 AM
+[2026-02-14 09:39:23.374] [LOG] ═══════════════════════════════════════
+[2026-02-14 09:39:47.390] [LOG] ═══════════════════════════════════════
+[2026-02-14 09:39:47.391] [LOG] 🎯 HOTWORD DETECTED
+[2026-02-14 09:39:47.392] [LOG] Hotword: mirror mirror
+[2026-02-14 09:39:47.394] [LOG] Transcript: mirror mirror
+[2026-02-14 09:39:47.395] [LOG] Source: pi2
+[2026-02-14 09:39:47.397] [LOG] Time: 2/14/2026, 9:39:47 AM
+[2026-02-14 09:39:47.400] [LOG] ═══════════════════════════════════════
+^C[2026-02-14 09:39:59.978] [LOG] [SIGINT] Received. Shutting down server...
+[2026-02-14 09:39:59.984] [LOG] Stopping module helper: MMM-VoskHotword
+[2026-02-14 09:39:59.985] [LOG] Stopping module helper: MMM-AssistantMk2
+[2026-02-14 09:39:59.986] [LOG] Stopping module helper: calendar
+[2026-02-14 09:39:59.989] [LOG] Node_helpers stopped ...
+
+[2026-02-14 09:38:47.356] [INFO] Calendar-Fetcher: Broadcasting 2 events.
+[2026-02-14 09:39:23.352] [LOG] ═══════════════════════════════════════
+[2026-02-14 09:39:23.355] [LOG] 🎯 HOTWORD DETECTED
+[2026-02-14 09:39:23.357] [LOG] Hotword: mirror mirror
+[2026-02-14 09:39:23.358] [LOG] Transcript: mirror mirror
+[2026-02-14 09:39:23.361] [LOG] Source: pi2
+[2026-02-14 09:39:23.371] [LOG] Time: 2/14/2026, 9:39:23 AM
+[2026-02-14 09:39:23.374] [LOG] ═══════════════════════════════════════
+[2026-02-14 09:39:47.390] [LOG] ═══════════════════════════════════════
+[2026-02-14 09:39:47.391] [LOG] 🎯 HOTWORD DETECTED
+[2026-02-14 09:39:47.392] [LOG] Hotword: mirror mirror
+[2026-02-14 09:39:47.394] [LOG] Transcript: mirror mirror
+[2026-02-14 09:39:47.395] [LOG] Source: pi2
+[2026-02-14 09:39:47.397] [LOG] Time: 2/14/2026, 9:39:47 AM
+[2026-02-14 09:39:47.400] [LOG] ═══════════════════════════════════════
+
 #Install system dependencies
 sudo apt update
 sudo apt install -y python3 python3-pip python3-venv \ portaudio19-dev alsa-utils
