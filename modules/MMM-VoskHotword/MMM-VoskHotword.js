@@ -17,7 +17,7 @@ Module.register("MMM-VoskHotword", {
 			});
 
 			// trigger hotword event
-			this.sendSocketNotification("HOTWORD_DETECTED", payload);
+			this.socketNotification("HOTWORD_DETECTED", payload);
 		}
 	},
 
