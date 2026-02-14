@@ -1,5 +1,6 @@
 const NodeHelper = require("node_helper");
 const http = require("http");
+require("dotenv").config();
 
 module.exports = NodeHelper.create({
 	start: function () {
