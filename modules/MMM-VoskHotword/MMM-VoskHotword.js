@@ -10,6 +10,7 @@ Module.register("MMM-VoskHotword", {
 
 	socketNotificationReceived: function (notification, payload) {
 		Log.info("MMM-VoskHotword: Received socket notification:", notification);
+		console.log("=== MMM-VoskHotword socketNotificationReceived ===");
 
 		if (notification === "HOTWORD_DETECTED") {
 			Log.info("🎯 Hotword detected:", payload.hotword, "from", payload.source);
