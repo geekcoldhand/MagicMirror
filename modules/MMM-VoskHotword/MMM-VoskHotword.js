@@ -15,6 +15,9 @@ Module.register("MMM-VoskHotword", {
 			this.sendNotification("ASSISTANT_ACTIVATE", {
 				profile: this.config.assistantProfile
 			});
+
+			// trigger hotword event
+			this.sendSocketNotification("HOTWORD_DETECTED", payload);
 		}
 	},
 
