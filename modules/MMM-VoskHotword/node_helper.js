@@ -1,85 +1,84 @@
 const NodeHelper = require("node_helper");
-const { spawn } = require("child_process");
-const path = require("path");
+const http = require("http");
 
 module.exports = NodeHelper.create({
-	start() {
-		this.proc = null;
-		this.buffer = "";
-		this.paused = false;
-		console.log("MMM-VoskHotword helper started");
+	start: function () {
+		console.log("Starting MMM-VoskHotword node helper");
+		this.config = {
+			port: 3000,
+			bearerToken: "CHANGE-THIS-TO-MATCH-PI2", // ⚠️ MUST MATCH PI 2
+			endpoint: "/vosk-hotword"
+		};
+		this.setupHttpServer();
 	},
 
-	socketNotificationReceived(notification, payload) {
-		switch (notification) {
-			case "START_HOTWORD":
-				this.startListener(payload);
-				break;
+	setupHttpServer: function () {
+		const self = this;
 
-			case "STOP_HOTWORD":
-				this.stopListener();
-				break;
+		const server = http.createServer((req, res) => {
+			if (req.method === "POST" && req.url === self.config.endpoint) {
+				// Check authentication
+				const authHeader = req.headers.authorization;
+				const expectedAuth = `Bearer ${self.config.bearerToken}`;
 
-			case "PAUSE_HOTWORD":
-				this.paused = true;
-				console.log("Hotword paused");
-				break;
-
-			case "RESUME_HOTWORD":
-				this.paused = false;
-				console.log("Hotword resumed");
-				break;
-		}
-	},
-
-	startListener(config) {
-		if (this.proc) return;
-
-		const script = path.join(__dirname, "hotword_listener.py");
-
-		this.proc = spawn("python3", [script], {
-			cwd: __dirname,
-			stdio: ["ignore", "pipe", "pipe"]
-		});
-
-		this.proc.stdout.on("data", (chunk) => {
-			this.buffer += chunk.toString();
-
-			let lines = this.buffer.split("\n");
-			this.buffer = lines.pop(); // keep incomplete line
-
-			for (const line of lines) {
-				if (!line.trim()) continue;
-
-				try {
-					const msg = JSON.parse(line);
-
-					if (msg.event === "HOTWORD" && !this.paused) {
-						console.log("HOTWORD event received:", msg.hotword);
-						this.sendSocketNotification("HOTWORD_DETECTED", msg);
-					}
-				} catch (e) {
-					console.error("JSON parse error:", line);
+				if (authHeader !== expectedAuth) {
+					console.error("⚠️  Unauthorized hotword request");
+					res.writeHead(401, { "Content-Type": "text/plain" });
+					res.end("Unauthorized");
+					return;
 				}
+
+				let body = "";
+				req.on("data", (chunk) => {
+					body += chunk.toString();
+				});
+
+				req.on("end", () => {
+					try {
+						const data = JSON.parse(body);
+						console.log("═══════════════════════════════════════");
+						console.log("🎯 HOTWORD DETECTED");
+						console.log(`   Hotword:    ${data.hotword}`);
+						console.log(`   Transcript: ${data.transcript}`);
+						console.log(`   Source:     ${data.source || "unknown"}`);
+						console.log(`   Time:       ${new Date(data.timestamp * 1000).toLocaleString()}`);
+						console.log("═══════════════════════════════════════");
+
+						// Send notification to frontend
+						self.sendSocketNotification("HOTWORD_DETECTED", {
+							hotword: data.hotword,
+							transcript: data.transcript,
+							source: data.source,
+							timestamp: data.timestamp
+						});
+
+						res.writeHead(200, { "Content-Type": "text/plain" });
+						res.end("OK");
+					} catch (error) {
+						console.error("⚠️  Parse error:", error);
+						res.writeHead(400, { "Content-Type": "text/plain" });
+						res.end("Bad Request");
+					}
+				});
+			} else {
+				res.writeHead(404, { "Content-Type": "text/plain" });
+				res.end("Not Found");
 			}
 		});
 
-		this.proc.stderr.on("data", (err) => {
-			console.error("Python stderr:", err.toString());
+		server.listen(this.config.port, "0.0.0.0", () => {
+			console.log(`✓ HTTP server listening on port ${this.config.port}`);
+			console.log(`✓ Endpoint: POST ${this.config.endpoint}`);
+			console.log(`✓ Authentication enabled`);
 		});
-
-		this.proc.on("exit", (code) => {
-			console.log("Python listener exited:", code);
-			this.proc = null;
-		});
-
-		console.log("Python hotword listener started");
 	},
 
-	stopListener() {
-		if (!this.proc) return;
-		this.proc.kill("SIGTERM");
-		this.proc = null;
-		console.log("Python hotword listener stopped");
+	socketNotificationReceived: function (notification, payload) {
+		// Handle notifications from frontend if needed
+		if (notification === "CONFIG") {
+			if (payload.bearerToken) {
+				this.config.bearerToken = payload.bearerToken;
+			}
+		}
 	}
 });
