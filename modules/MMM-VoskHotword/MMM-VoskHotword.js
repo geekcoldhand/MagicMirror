@@ -6,8 +6,11 @@ Module.register("MMM-VoskHotword", {
 	start: function () {
 		Log.info("MMM-VoskHotword: External Pi 2 hotword detection mode");
 		Log.info("MMM-VoskHotword: Ready to receive socket notifications");
-	},
 
+		this.sendSocketNotification("CONFIG", {
+			assistantProfile: this.config.assistantProfile
+		});
+	},
 	socketNotificationReceived: function (notification, payload) {
 		Log.info("MMM-VoskHotword: Received socket notification:", notification);
 		console.log("=== MMM-VoskHotword socketNotificationReceived ===");
