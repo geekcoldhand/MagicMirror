@@ -20,20 +20,18 @@ Module.register("MMM-VoskHotword", {
 
 	socketNotificationReceived: function (notification, payload) {
 		console.log("=== MMM-VoskHotword socketNotificationReceived ===");
-		console.log("Payload:", payload);
+		console.log("2.Vosk Payload:", payload);
 
 		if (notification === "HOTWORD_DETECTED") {
-			console.log("🎯 Hotword detected.. Full transcript:", payload.transcript);
+			console.log("***** 2. Hotword detected.. Full transcript:", payload.transcript);
 
 			// Show wake animation
-			this.sendNotification("HOTWORD_DETECTED", payload);
+			this.sendNotification("ASSISTANT_LISTENING", payload);
 
 			// Extract query after hotword
 			const query = this.extractQuery(payload.transcript, payload.hotword);
 
 			if (query && query.length > 0) {
-				console.log("Sending TEXT query to Assistant:", query);
-
 				// Send as TEXT query
 				this.sendNotification("ASSISTANT_ACTIVATE", {
 					type: "TEXT",
@@ -42,6 +40,8 @@ Module.register("MMM-VoskHotword", {
 					lang: "en-US",
 					key: payload.query
 				});
+
+				console.log("**** 3. Sending TEXT query to Assistant:", query);
 			} else {
 				console.log("No query found, just hotword. Not activating Assistant.");
 				// Don't activate - just the hotword was said

@@ -52,7 +52,7 @@ module.exports = NodeHelper.create({
 							source: data.source,
 							timestamp: data.timestamp
 						});
-						console.log("✓ Socket notification data sent to frontend", data);
+						console.log("** 1. Socket notification data sent to frontend", data);
 
 						res.writeHead(200, { "Content-Type": "text/plain" });
 						res.end("OK");
