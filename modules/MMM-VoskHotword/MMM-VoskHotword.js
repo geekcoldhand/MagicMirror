@@ -28,7 +28,7 @@ Module.register("MMM-VoskHotword", {
 			console.log("Full transcript:", payload.transcript);
 
 			// Show wake animation
-			this.sendNotification("HOTWORD_DETECTED", payload);
+			this.sendNotification("ASSISTANT_ACTIVATE", payload);
 
 			// Extract query after hotword
 			const query = this.extractQuery(payload.transcript, payload.hotword);
