@@ -1,0 +1,148 @@
+Navigated to http://localhost:8080/
+VM21:465 Initializing MagicMirror².
+VM16:120 Loading core translation file: translations/en.json
+VM16:136 Loading core translation fallback file: translations/en.json
+VM19:162 Load script: modules/MMM-WakeAnimation/MMM-WakeAnimation.js
+VM18:481 Module registered: MMM-WakeAnimation
+VM19:135 Bootstrapping module: MMM-WakeAnimation
+VM19:139 Scripts loaded for: MMM-WakeAnimation
+VM19:177 Load stylesheet: modules/MMM-WakeAnimation/MMM-WakeAnimation.css
+VM19:142 Styles loaded for: MMM-WakeAnimation
+VM19:145 Translations loaded for: MMM-WakeAnimation
+VM19:162 Load script: modules/MMM-VoskHotword/MMM-VoskHotword.js
+VM18:481 Module registered: MMM-VoskHotword
+VM19:135 Bootstrapping module: MMM-VoskHotword
+VM19:139 Scripts loaded for: MMM-VoskHotword
+VM19:142 Styles loaded for: MMM-VoskHotword
+VM19:145 Translations loaded for: MMM-VoskHotword
+VM19:162 Load script: modules/MMM-AssistantMk2/MMM-AssistantMk2.js
+VM18:481 Module registered: MMM-AssistantMk2
+VM19:135 Bootstrapping module: MMM-AssistantMk2
+VM19:139 Scripts loaded for: MMM-AssistantMk2
+VM19:177 Load stylesheet: modules/MMM-AssistantMk2/MMM-AssistantMk2.css
+VM19:142 Styles loaded for: MMM-AssistantMk2
+VM19:145 Translations loaded for: MMM-AssistantMk2
+VM19:162 Load script: modules/default/alert/alert.js
+VM18:481 Module registered: alert
+VM19:135 Bootstrapping module: alert
+VM19:162 Load script: modules/default/alert/notificationFx.js
+VM19:139 Scripts loaded for: alert
+VM19:177 Load stylesheet: vendor/css/font-awesome.css
+VM19:177 Load stylesheet: modules/default/alert/./styles/notificationFx.css
+VM19:177 Load stylesheet: modules/default/alert/./styles/center.css
+VM19:142 Styles loaded for: alert
+VM16:103 alert - Load translation: translations/en.json
+VM16:103 alert - Load translation fallback: translations/bg.json
+VM19:145 Translations loaded for: alert
+VM19:162 Load script: modules/default/clock/clock.js
+VM18:481 Module registered: clock
+VM19:135 Bootstrapping module: clock
+VM19:162 Load script: vendor/node_modules/moment/min/moment-with-locales.js
+VM19:162 Load script: vendor/node_modules/moment-timezone/builds/moment-timezone-with-data.js
+VM19:162 Load script: vendor/node_modules/suncalc/suncalc.js
+VM19:139 Scripts loaded for: clock
+VM19:177 Load stylesheet: modules/default/clock/clock_styles.css
+VM19:142 Styles loaded for: clock
+VM19:145 Translations loaded for: clock
+VM19:162 Load script: modules/default/calendar/calendar.js
+VM18:473 Check MagicMirror² version for module 'calendar' - Minimum version:  2.1.0 - Current version: 2.24.0
+VM18:475 Version is ok!
+VM18:481 Module registered: calendar
+VM19:135 Bootstrapping module: calendar
+VM19:162 Load script: modules/default/calendar/calendarutils.js
+VM19:233 File already loaded: moment.js
+VM19:139 Scripts loaded for: calendar
+VM19:177 Load stylesheet: modules/default/calendar/calendar.css
+VM19:233 File already loaded: font-awesome.css
+VM19:142 Styles loaded for: calendar
+VM19:145 Translations loaded for: calendar
+VM19:162 Load script: modules/default/weather/weather.js
+VM18:481 Module registered: weather
+VM19:135 Bootstrapping module: weather
+VM19:233 File already loaded: moment.js
+VM19:162 Load script: modules/default/weather/../utils.js
+VM19:162 Load script: modules/default/weather/weatherutils.js
+VM19:162 Load script: modules/default/weather/weatherprovider.js
+VM19:162 Load script: modules/default/weather/weatherobject.js
+VM19:233 File already loaded: suncalc.js
+VM19:162 Load script: modules/default/weather/providers/openweathermap.js
+VM19:139 Scripts loaded for: weather
+VM19:233 File already loaded: font-awesome.css
+VM19:177 Load stylesheet: vendor/node_modules/weathericons/css/weather-icons.css
+VM19:177 Load stylesheet: modules/default/weather/weather.css
+VM19:142 Styles loaded for: weather
+VM19:145 Translations loaded for: weather
+VM19:177 Load stylesheet: css/custom.css
+VM23:10 Wake Animation module started
+VM27:7 MMM-VoskHotword: External Pi 2 hotword detection mode
+VM27:8 MMM-VoskHotword: Ready to receive socket notifications
+VM29:88 start
+VM33:48 Starting module: alert
+VM37:49 Starting module: clock
+VM41:97 Starting module: calendar
+weatherprovider.js:35 Weather provider: OpenWeatherMap initialized.
+weatherprovider.js:46 Weather provider: OpenWeatherMap started.
+VM21:482 All modules started!
+VM23:36 MMM-WakeAnimation received: ALL_MODULES_STARTED
+VM27:32 MMM-VoskHotword received notification: ALL_MODULES_STARTED from system
+VM23:36 MMM-WakeAnimation received: MODULE_DOM_CREATED
+weather.js:187 [Violation] 'setTimeout' handler took 54ms
+VM10:-6573 [Violation] 'readystatechange' handler took 480ms
+VM23:36 MMM-WakeAnimation received: DOM_OBJECTS_CREATED
+VM27:32 MMM-VoskHotword received notification: DOM_OBJECTS_CREATED from system
+VM37:67 [Violation] 'setTimeout' handler took 58ms
+weather.js:163 New weather information available.
+VM23:36 MMM-WakeAnimation received: CURRENTWEATHER_TYPE
+VM27:32 MMM-VoskHotword received notification: CURRENTWEATHER_TYPE from weather
+VM23:36 MMM-WakeAnimation received: WEATHER_UPDATED
+VM27:32 MMM-VoskHotword received notification: WEATHER_UPDATED from weather
+VM10:-6573 [Violation] 'readystatechange' handler took 627ms
+www-widgetapi.js:194 Unrecognized feature: 'web-share'.
+X @ www-widgetapi.js:194
+window.onYouTubeIframeAPIReady @ VM29:137
+(anonymous) @ www-widgetapi.js:232
+(anonymous) @ www-widgetapi.js:232
+VM37:67 [Violation] 'setTimeout' handler took 60ms
+Error with Permissions-Policy header: Unrecognized feature: 'ch-ua-form-factors'.
+VM23:36 MMM-WakeAnimation received: CALENDAR_EVENTS
+VM27:32 MMM-VoskHotword received notification: CALENDAR_EVENTS from calendar
+VM21:242 [Violation] 'setTimeout' handler took 208ms
+[Violation] Forced reflow while executing JavaScript took 135ms
+6[Violation] 'setTimeout' handler took <N>ms
+base.js:8038 [Violation] Added non-passive event listener to a scroll-blocking 'touchstart' event. Consider marking event handler as 'passive' to make the page more responsive. See https://www.chromestatus.com/feature/5745543795965952
+(anonymous) @ base.js:8038
+j @ base.js:5958
+j @ base.js:6307
+n0 @ base.js:7524
+n0 @ base.js:7949
+dR @ base.js:7523
+(anonymous) @ base.js:1303
+(anonymous) @ base.js:5913
+publish @ base.js:6641
+publish @ base.js:6640
+J$ @ base.js:8085
+(anonymous) @ base.js:5913
+(anonymous) @ base.js:6086
+n0 @ base.js:7241
+ij @ base.js:7184
+uY @ base.js:7179
+J1 @ base.js:7179
+S8 @ base.js:7182
+S8 @ base.js:6705
+Rl @ base.js:5358
+playVideo @ base.js:8120
+OR @ base.js:6643
+HR @ base.js:6643
+(anonymous) @ base.js:3605
+handleExternalCall @ base.js:6639
+(anonymous) @ base.js:3604
+(anonymous) @ www-embed-player-es6.js:1689
+onMessage @ www-embed-player-es6.js:1653
+u @ www-embed-player-es6.js:1644
+www-embed-player-es6.js:1644 [Violation] 'message' handler took 1031ms
+VM29:158 youtube error: 2
+base.js:899 [Violation] 'message' handler took 260ms
+9[Violation] 'requestIdleCallback' handler took <N>ms
+VM10:161 crbug/1173575, non-JS module files deprecated.
+(anonymous) @ VM10:161
+Navigated to chrome-error://chromewebdata/
