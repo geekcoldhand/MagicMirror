@@ -7,28 +7,60 @@ Module.register("MMM-VoskHotword", {
 		Log.info("MMM-VoskHotword: External Pi 2 hotword detection mode");
 		Log.info("MMM-VoskHotword: Ready to receive socket notifications");
 
-		this.sendSocketNotification("CONFIG", {
-			assistantProfile: this.config.assistantProfile
-		});
+		// this.sendSocketNotification("CONFIG", {
+		// 	assistantProfile: this.config.assistantProfile
+		// });
+		// this.sendNotification("ASSISTANT_ACTIVATE", {
+		// 	type: "TEXT",
+		// 	profile: this.config.assistantProfile,
+		// 	profileFile: "default.json", // Add this
+		// 	lang: "en-US", // Add this
+		// 	key: payload.query
+		// });
 	},
+
 	socketNotificationReceived: function (notification, payload) {
-		Log.info("MMM-VoskHotword: Received socket notification:", notification);
 		console.log("=== MMM-VoskHotword socketNotificationReceived ===");
+		console.log("Payload:", payload);
 
 		if (notification === "HOTWORD_DETECTED") {
-			Log.info("🎯 Hotword detected:", payload.hotword, "from", payload.source);
-			Log.info("Broadcasting HOTWORD_DETECTED to all modules...");
+			console.log("🎯 Hotword detected:", payload.hotword);
+			console.log("Full transcript:", payload.transcript);
 
-			// Broadcast to all modules FIRST
+			// Show wake animation
 			this.sendNotification("HOTWORD_DETECTED", payload);
-			Log.info("✓ Broadcast sent");
 
-			// Then trigger Assistant
-			this.sendNotification("ASSISTANT_ACTIVATE", {
-				profile: this.config.assistantProfile
-			});
-			Log.info("✓ ASSISTANT_ACTIVATE sent");
+			// Extract query after hotword
+			const query = this.extractQuery(payload.transcript, payload.hotword);
+
+			if (query && query.length > 0) {
+				console.log("Sending TEXT query to Assistant:", query);
+
+				// Send as TEXT query
+				this.sendNotification("ASSISTANT_ACTIVATE", {
+					type: "TEXT",
+					profile: this.config.assistantProfile,
+					key: query
+				});
+			} else {
+				console.log("No query found, just hotword. Not activating Assistant.");
+				// Don't activate - just the hotword was said
+			}
 		}
+	},
+
+	extractQuery: function (transcript, hotword) {
+		// Remove hotword from transcript
+		const lowerTranscript = transcript.toLowerCase();
+		const lowerHotword = hotword.toLowerCase();
+
+		const index = lowerTranscript.indexOf(lowerHotword);
+		if (index !== -1) {
+			const query = transcript.substring(index + hotword.length).trim();
+			return query;
+		}
+
+		return "";
 	},
 
 	notificationReceived: function (notification, payload, sender) {
