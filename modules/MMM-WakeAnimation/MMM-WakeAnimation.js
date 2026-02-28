@@ -41,7 +41,7 @@ Module.register("MMM-WakeAnimation", {
 		}
 
 		// other notification systems
-		if (notification === "HOTWORD_DETECTED") {
+		if (notification === "HOTWORD_DETECTED" || notification === "TRANSCRIPTION") {
 			this.showAnimation();
 		}
 

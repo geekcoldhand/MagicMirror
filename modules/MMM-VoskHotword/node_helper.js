@@ -7,7 +7,7 @@ module.exports = NodeHelper.create({
 		console.log("Starting MMM-VoskHotword node helper");
 		this.config = {
 			port: 3000,
-			bearerToken: process.env.HOTWORD_BEARER_TOKEN, // ⚠️ MUST MATCH PI 2
+			bearerToken: process.env.HOTWORD_BEARER_TOKEN,
 			endpoint: "/vosk-hotword"
 		};
 		this.setupHttpServer();
