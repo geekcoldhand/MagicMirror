@@ -6,16 +6,9 @@ Module.register("MMM-VoskHotword", {
 	start: function () {
 		Log.info("MMM-VoskHotword: Ready to receive socket notifications");
 
-		// this.sendSocketNotification("CONFIG", {
-		// 	assistantProfile: this.config.assistantProfile
-		// });
-		// this.sendNotification("ASSISTANT_ACTIVATE", {
-		// 	type: "TEXT",
-		// 	profile: this.config.assistantProfile,
-		// 	profileFile: "default.json", // Add this
-		// 	lang: "en-US", // Add this
-		// 	key: payload.query
-		// });
+		this.sendSocketNotification("CONFIG", {
+			assistantProfile: this.config.assistantProfile
+		});
 	},
 
 	socketNotificationReceived: function (notification, payload) {
