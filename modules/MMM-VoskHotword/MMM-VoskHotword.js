@@ -38,7 +38,7 @@ Module.register("MMM-VoskHotword", {
 					profile: this.config.assistantProfile,
 					profileFile: "default.json",
 					lang: "en-US",
-					key: payload.query
+					key: query
 				});
 
 				console.log("**** 3. Sending TEXT query to Assistant:", query);
