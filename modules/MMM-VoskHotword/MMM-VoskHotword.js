@@ -4,19 +4,18 @@ Module.register("MMM-VoskHotword", {
 	},
 
 	start: function () {
-		Log.info("MMM-VoskHotword: External Pi 2 hotword detection mode");
 		Log.info("MMM-VoskHotword: Ready to receive socket notifications");
 
 		// this.sendSocketNotification("CONFIG", {
 		// 	assistantProfile: this.config.assistantProfile
 		// });
-		this.sendNotification("ASSISTANT_ACTIVATE", {
-			type: "TEXT",
-			profile: this.config.assistantProfile,
-			profileFile: "default.json", // Add this
-			lang: "en-US", // Add this
-			key: payload.query
-		});
+		// this.sendNotification("ASSISTANT_ACTIVATE", {
+		// 	type: "TEXT",
+		// 	profile: this.config.assistantProfile,
+		// 	profileFile: "default.json", // Add this
+		// 	lang: "en-US", // Add this
+		// 	key: payload.query
+		// });
 	},
 
 	socketNotificationReceived: function (notification, payload) {
@@ -24,11 +23,10 @@ Module.register("MMM-VoskHotword", {
 		console.log("Payload:", payload);
 
 		if (notification === "HOTWORD_DETECTED") {
-			console.log("🎯 Hotword detected:", payload.hotword);
-			console.log("Full transcript:", payload.transcript);
+			console.log("🎯 Hotword detected.. Full transcript:", payload.transcript);
 
 			// Show wake animation
-			//this.sendNotification("ASSISTANT_ACTIVATE", payload);
+			this.sendNotification("HOTWORD_DETECTED", payload);
 
 			// Extract query after hotword
 			const query = this.extractQuery(payload.transcript, payload.hotword);
@@ -40,7 +38,9 @@ Module.register("MMM-VoskHotword", {
 				this.sendNotification("ASSISTANT_ACTIVATE", {
 					type: "TEXT",
 					profile: this.config.assistantProfile,
-					key: query
+					profileFile: "default.json",
+					lang: "en-US",
+					key: payload.query
 				});
 			} else {
 				console.log("No query found, just hotword. Not activating Assistant.");
