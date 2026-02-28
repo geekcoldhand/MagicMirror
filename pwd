@@ -20,6 +20,15 @@ Module.register("MMM-VoskHotword", {
 
 	socketNotificationReceived: function (notification, payload) {
 		console.log("=== MMM-VoskHotword socketNotificationReceived ===");
+<<<<<<< Updated upstream
+		console.log("2.Vosk Payload:", payload);
+
+		if (notification === "HOTWORD_DETECTED") {
+			console.log("***** 2. Hotword detected.. Full transcript:", payload.transcript);
+
+			// Show wake animation
+			this.sendNotification("ASSISTANT_LISTENING", payload);
+=======
 		console.log("Payload:", payload);
 
 		if (notification === "HOTWORD_DETECTED") {
@@ -28,23 +37,51 @@ Module.register("MMM-VoskHotword", {
 
 			// Show wake animation
 			this.sendNotification("HOTWORD_DETECTED", payload);
+>>>>>>> Stashed changes
 
 			// Extract query after hotword
 			const query = this.extractQuery(payload.transcript, payload.hotword);
 
 			if (query && query.length > 0) {
+<<<<<<< Updated upstream
+=======
 				console.log("Sending TEXT query to Assistant:", query);
 
+>>>>>>> Stashed changes
 				// Send as TEXT query
 				this.sendNotification("ASSISTANT_ACTIVATE", {
 					type: "TEXT",
 					profile: this.config.assistantProfile,
+<<<<<<< Updated upstream
+					profileFile: "default.json",
+					lang: "en-US",
 					key: query
 				});
+
+				console.log("**** 3. Sending TEXT query to Assistant:", query);
+=======
+					key: query
+				});
+>>>>>>> Stashed changes
 			} else {
 				console.log("No query found, just hotword. Not activating Assistant.");
 				// Don't activate - just the hotword was said
 			}
+<<<<<<< Updated upstream
+=======
+		}
+	},
+
+	extractQuery: function (transcript, hotword) {
+		// Remove hotword from transcript
+		const lowerTranscript = transcript.toLowerCase();
+		const lowerHotword = hotword.toLowerCase();
+
+		const index = lowerTranscript.indexOf(lowerHotword);
+		if (index !== -1) {
+			const query = transcript.substring(index + hotword.length).trim();
+			return query;
+>>>>>>> Stashed changes
 		}
 
 		return "";
