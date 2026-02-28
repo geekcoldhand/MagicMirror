@@ -10,13 +10,13 @@ Module.register("MMM-VoskHotword", {
 		// this.sendSocketNotification("CONFIG", {
 		// 	assistantProfile: this.config.assistantProfile
 		// });
-		// this.sendNotification("ASSISTANT_ACTIVATE", {
-		// 	type: "TEXT",
-		// 	profile: this.config.assistantProfile,
-		// 	profileFile: "default.json", // Add this
-		// 	lang: "en-US", // Add this
-		// 	key: payload.query
-		// });
+		this.sendNotification("ASSISTANT_ACTIVATE", {
+			type: "TEXT",
+			profile: this.config.assistantProfile,
+			profileFile: "default.json", // Add this
+			lang: "en-US", // Add this
+			key: payload.query
+		});
 	},
 
 	socketNotificationReceived: function (notification, payload) {
@@ -28,7 +28,7 @@ Module.register("MMM-VoskHotword", {
 			console.log("Full transcript:", payload.transcript);
 
 			// Show wake animation
-			this.sendNotification("ASSISTANT_ACTIVATE", payload);
+			//this.sendNotification("ASSISTANT_ACTIVATE", payload);
 
 			// Extract query after hotword
 			const query = this.extractQuery(payload.transcript, payload.hotword);
