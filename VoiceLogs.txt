@@ -1,24 +1,23 @@
-Navigated to http://localhost:8080/
-main.js:465 Initializing MagicMirror².
-translator.js:120 Loading core translation file: translations/en.json
-translator.js:136 Loading core translation fallback file: translations/en.json
-loader.js:162 Load script: modules/MMM-WakeAnimation/MMM-WakeAnimation.js
-module.js:481 Module registered: MMM-WakeAnimation
-loader.js:135 Bootstrapping module: MMM-WakeAnimation
-loader.js:139 Scripts loaded for: MMM-WakeAnimation
-loader.js:177 Load stylesheet: modules/MMM-WakeAnimation/MMM-WakeAnimation.css
-loader.js:142 Styles loaded for: MMM-WakeAnimation
-loader.js:145 Translations loaded for: MMM-WakeAnimation
-loader.js:162 Load script: modules/MMM-VoskHotword/MMM-VoskHotword.js
-module.js:481 Module registered: MMM-VoskHotword
-loader.js:135 Bootstrapping module: MMM-VoskHotword
-loader.js:139 Scripts loaded for: MMM-VoskHotword
-loader.js:142 Styles loaded for: MMM-VoskHotword
-loader.js:145 Translations loaded for: MMM-VoskHotword
-loader.js:162 Load script: modules/MMM-AssistantMk2/MMM-AssistantMk2.js
-module.js:481 Module registered: MMM-AssistantMk2
-loader.js:135 Bootstrapping module: MMM-AssistantMk2
-loader.js:139 Scripts loaded for: MMM-AssistantMk2
+ Initializing MagicMirror².
+ Loading core translation file: translations/en.json
+ Loading core translation fallback file: translations/en.json
+ Load script: modules/MMM-WakeAnimation/MMM-WakeAnimation.js
+ Module registered: MMM-WakeAnimation
+ Bootstrapping module: MMM-WakeAnimation
+ Scripts loaded for: MMM-WakeAnimation
+ Load stylesheet: modules/MMM-WakeAnimation/MMM-WakeAnimation.css
+ Styles loaded for: MMM-WakeAnimation
+ Translations loaded for: MMM-WakeAnimation
+ Load script: modules/MMM-VoskHotword/MMM-VoskHotword.js
+ Module registered: MMM-VoskHotword
+ Bootstrapping module: MMM-VoskHotword
+ Scripts loaded for: MMM-VoskHotword
+ Styles loaded for: MMM-VoskHotword
+ Translations loaded for: MMM-VoskHotword
+ Load script: modules/MMM-AssistantMk2/MMM-AssistantMk2.js
+ Module registered: MMM-AssistantMk2
+ Bootstrapping module: MMM-AssistantMk2
+ Scripts loaded for: MMM-AssistantMk2
 loader.js:177 Load stylesheet: modules/MMM-AssistantMk2/MMM-AssistantMk2.css
 loader.js:142 Styles loaded for: MMM-AssistantMk2
 loader.js:145 Translations loaded for: MMM-AssistantMk2
@@ -76,28 +75,6 @@ loader.js:177 Load stylesheet: css/custom.css
 localhost/:1 Refused to apply style from 'http://localhost:8080/css/custom.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled.
 loader.js:187 Error on loading stylesheet: css/custom.css
 stylesheet.onerror @ loader.js:187
-error (async)
-(anonymous) @ loader.js:186
-loadFile @ loader.js:176
-loadNextModule @ loader.js:216
-loadNextModule @ loader.js:211
-await in loadNextModule (async)
-loadNextModule @ loader.js:211
-await in loadNextModule (async)
-loadNextModule @ loader.js:211
-await in loadNextModule (async)
-loadNextModule @ loader.js:211
-await in loadNextModule (async)
-loadNextModule @ loader.js:211
-await in loadNextModule (async)
-loadNextModule @ loader.js:211
-await in loadNextModule (async)
-loadNextModule @ loader.js:211
-await in loadNextModule (async)
-loadModules @ loader.js:221
-init @ main.js:471
-await in init (async)
-(anonymous) @ main.js:593
 MMM-WakeAnimation.js:10 Wake Animation module started
 MMM-VoskHotword.js:7 MMM-VoskHotword: Ready to receive socket notifications
 MMM-AssistantMk2.js:88 starting MMM-AssistantMk2.js 
@@ -110,8 +87,6 @@ main.js:482 All modules started!
 MMM-WakeAnimation.js:36 MMM-WakeAnimation received: ALL_MODULES_STARTED
 MMM-VoskHotword.js:61 MMM-VoskHotword received notification: ALL_MODULES_STARTED from system
 MMM-WakeAnimation.js:36 MMM-WakeAnimation received: MODULE_DOM_CREATED
-weather.js:187 [Violation] 'setTimeout' handler took 50ms
-nunjucks.min.js:2 [Violation] 'readystatechange' handler took 652ms
 MMM-WakeAnimation.js:36 MMM-WakeAnimation received: DOM_OBJECTS_CREATED
 MMM-VoskHotword.js:61 MMM-VoskHotword received notification: DOM_OBJECTS_CREATED from system
 weather.js:163 New weather information available.
@@ -119,13 +94,11 @@ MMM-WakeAnimation.js:36 MMM-WakeAnimation received: CURRENTWEATHER_TYPE
 MMM-VoskHotword.js:61 MMM-VoskHotword received notification: CURRENTWEATHER_TYPE from weather
 MMM-WakeAnimation.js:36 MMM-WakeAnimation received: WEATHER_UPDATED
 MMM-VoskHotword.js:61 MMM-VoskHotword received notification: WEATHER_UPDATED from weather
-nunjucks.min.js:2 [Violation] 'readystatechange' handler took 326ms
 MMM-WakeAnimation.js:36 MMM-WakeAnimation received: CALENDAR_EVENTS
 MMM-VoskHotword.js:61 MMM-VoskHotword received notification: CALENDAR_EVENTS from calendar
-main.js:242 [Violation] 'setTimeout' handler took 83ms
-[Violation] Forced reflow while executing JavaScript took 73ms
+localhost/:1 Refused to apply style from 'http://localhost:8080/css/custom.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled.
 MMM-VoskHotword.js:15 === MMM-VoskHotword socketNotificationReceived ===
-MMM-VoskHotword.js:16 Payload: {hotword: 'mirror mirror', transcript: 'mirror mirror', source: 'pi_zero_2w', timestamp: 1772322018.0013602}
+MMM-VoskHotword.js:16 Payload: {hotword: 'mirror mirror', transcript: 'mirror mirror', source: 'pi_zero_2w', timestamp: 1772376098.1732132}
 MMM-VoskHotword.js:19 🎯 Hotword detected: mirror mirror
 MMM-VoskHotword.js:20 Full transcript: mirror mirror
 MMM-WakeAnimation.js:36 MMM-WakeAnimation received: HOTWORD_DETECTED
@@ -133,14 +106,14 @@ MMM-WakeAnimation.js:54 Showing wake animation
 MMM-VoskHotword.js:38 No query found, just hotword. Not activating Assistant.
 MMM-WakeAnimation.js:71 Hiding wake animation
 MMM-VoskHotword.js:15 === MMM-VoskHotword socketNotificationReceived ===
-MMM-VoskHotword.js:16 Payload: {hotword: 'ok computer', transcript: 'ok computer how is the weather today', source: 'pi_zero_2w', timestamp: 1772322109.6487806}
-MMM-VoskHotword.js:19 🎯 Hotword detected: ok computer
-MMM-VoskHotword.js:20 Full transcript: ok computer how is the weather today
+MMM-VoskHotword.js:16 Payload: {hotword: 'mirror mirror', transcript: 'mirror mirror the weather', source: 'pi_zero_2w', timestamp: 1772376139.952993}
+MMM-VoskHotword.js:19 🎯 Hotword detected: mirror mirror
+MMM-VoskHotword.js:20 Full transcript: mirror mirror the weather
 MMM-WakeAnimation.js:36 MMM-WakeAnimation received: HOTWORD_DETECTED
 MMM-WakeAnimation.js:54 Showing wake animation
-MMM-VoskHotword.js:29 Sending TEXT query to Assistant: how is the weather today
+MMM-VoskHotword.js:29 Sending TEXT query to Assistant: the weather
 MMM-WakeAnimation.js:36 MMM-WakeAnimation received: ASSISTANT_ACTIVATE
-MMM-AssistantMk2.js:243 *** 4. ASSISTANT_ACTIVATE received: {type: 'TEXT', profile: 'default', key: 'how is the weather today'}key: "how is the weather today"profile: "default"type: "TEXT"[[Prototype]]: Object
+MMM-AssistantMk2.js:243 *** 4. ASSISTANT_ACTIVATE received: {type: 'TEXT', profile: 'default', key: 'the weather'}
 MMM-WakeAnimation.js:36 MMM-WakeAnimation received: ASSISTANT_LISTENING
 MMM-WakeAnimation.js:54 Showing wake animation
 MMM-VoskHotword.js:61 MMM-VoskHotword received notification: ASSISTANT_LISTENING from MMM-AssistantMk2
@@ -180,10 +153,58 @@ Emitter.emit @ index.js:136
 onPacket @ transport.js:99
 onData @ transport.js:91
 ws.onmessage @ websocket.js:48
+MMM-VoskHotword.js:15 === MMM-VoskHotword socketNotificationReceived ===
+MMM-VoskHotword.js:16 Payload: {hotword: 'mirror mirror', transcript: 'mirror mirror what the weather', source: 'pi_zero_2w', timestamp: 1772376149.3997083}
+MMM-VoskHotword.js:19 🎯 Hotword detected: mirror mirror
+MMM-VoskHotword.js:20 Full transcript: mirror mirror what the weather
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: HOTWORD_DETECTED
+MMM-WakeAnimation.js:54 Showing wake animation
+MMM-VoskHotword.js:29 Sending TEXT query to Assistant: what the weather
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: ASSISTANT_ACTIVATE
+MMM-AssistantMk2.js:243 *** 4. ASSISTANT_ACTIVATE received: {type: 'TEXT', profile: 'default', key: 'what the weather'}
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: ASSISTANT_LISTENING
+MMM-WakeAnimation.js:54 Showing wake animation
+MMM-VoskHotword.js:61 MMM-VoskHotword received notification: ASSISTANT_LISTENING from MMM-AssistantMk2
+MMM-AssistantMk2.js:248  Using requested profile: 
+MMM-AssistantMk2.js:255 📋 Profile config: {profileFile: 'default.json', lang: 'en-US'}
+MMM-AssistantMk2.js:219 Uncaught (in promise) TypeError: Cannot read properties of null (reading 'stopVideo')
+    at Class.hideVideo (MMM-AssistantMk2.js:219:12)
+    at Class.socketNotificationReceived (MMM-AssistantMk2.js:278:10)
+    at module.js:232:9
+    at Socket.<anonymous> (socketclient.js:56:4)
+    at Emitter.emit (index.js:136:20)
+    at Socket.emitEvent (socket.js:552:20)
+    at Socket.onevent (socket.js:539:18)
+    at MMSocket.socket.onevent (socketclient.js:48:11)
+    at Socket.onpacket (socket.js:507:22)
+    at Emitter.emit (index.js:136:20)
+hideVideo @ MMM-AssistantMk2.js:219
+socketNotificationReceived @ MMM-AssistantMk2.js:278
+(anonymous) @ module.js:232
+(anonymous) @ socketclient.js:56
+Emitter.emit @ index.js:136
+emitEvent @ socket.js:552
+onevent @ socket.js:539
+MMSocket.socket.onevent @ socketclient.js:48
+onpacket @ socket.js:507
+Emitter.emit @ index.js:136
+(anonymous) @ manager.js:217
+Promise.then (async)
+(anonymous) @ globals.js:4
+ondecoded @ manager.js:216
+Emitter.emit @ index.js:136
+add @ index.js:142
+ondata @ manager.js:203
+Emitter.emit @ index.js:136
+_onPacket @ socket.js:259
+Emitter.emit @ index.js:136
+onPacket @ transport.js:99
+onData @ transport.js:91
+ws.onmessage @ websocket.js:48
+MMM-WakeAnimation.js:71 Hiding wake animation
 MMM-WakeAnimation.js:36 MMM-WakeAnimation received: ASSISTANT_DEACTIVATED
 MMM-WakeAnimation.js:71 Hiding wake animation
 MMM-VoskHotword.js:61 MMM-VoskHotword received notification: ASSISTANT_DEACTIVATED from MMM-AssistantMk2
-clock.js:67 [Violation] 'setTimeout' handler took 79ms
-calendar.js:158 [Violation] 'setInterval' handler took 75ms
-main.js:242 [Violation] 'setTimeout' handler took 52ms
-[Violation] Forced reflow while executing JavaScript took 33ms
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: ASSISTANT_DEACTIVATED
+MMM-WakeAnimation.js:71 Hiding wake animation
+MMM-VoskHotword.js:61 MMM-VoskHotword received notification: ASSISTANT_DEACTIVATED from MMM-AssistantMk2
