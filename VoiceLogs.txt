@@ -18,9 +18,9 @@
  Module registered: MMM-AssistantMk2
  Bootstrapping module: MMM-AssistantMk2
  Scripts loaded for: MMM-AssistantMk2
-loader.js:177 Load stylesheet: modules/MMM-AssistantMk2/MMM-AssistantMk2.css
-loader.js:142 Styles loaded for: MMM-AssistantMk2
-loader.js:145 Translations loaded for: MMM-AssistantMk2
+ Load stylesheet: modules/MMM-AssistantMk2/MMM-AssistantMk2.css
+ Styles loaded for: MMM-AssistantMk2
+ Translations loaded for: MMM-AssistantMk2
 loader.js:162 Load script: modules/default/alert/alert.js
 module.js:481 Module registered: alert
 loader.js:135 Bootstrapping module: alert
@@ -96,9 +96,48 @@ MMM-WakeAnimation.js:36 MMM-WakeAnimation received: WEATHER_UPDATED
 MMM-VoskHotword.js:61 MMM-VoskHotword received notification: WEATHER_UPDATED from weather
 MMM-WakeAnimation.js:36 MMM-WakeAnimation received: CALENDAR_EVENTS
 MMM-VoskHotword.js:61 MMM-VoskHotword received notification: CALENDAR_EVENTS from calendar
-localhost/:1 Refused to apply style from 'http://localhost:8080/css/custom.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled.
 MMM-VoskHotword.js:15 === MMM-VoskHotword socketNotificationReceived ===
-MMM-VoskHotword.js:16 Payload: {hotword: 'mirror mirror', transcript: 'mirror mirror', source: 'pi_zero_2w', timestamp: 1772376098.1732132}
+MMM-VoskHotword.js:16 Payload: Object
+MMM-VoskHotword.js:19 🎯 Hotword detected: mirror mirror
+MMM-VoskHotword.js:20 Full transcript: mirror mirror wouldn't weapon weapons
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: HOTWORD_DETECTED
+MMM-WakeAnimation.js:54 Showing wake animation
+MMM-VoskHotword.js:29 Sending TEXT query to Assistant: wouldn't weapon weapons
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: ASSISTANT_ACTIVATE
+MMM-AssistantMk2.js:245 *** 4. ASSISTANT_ACTIVATE received: Object
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: ASSISTANT_LISTENING
+MMM-WakeAnimation.js:54 Showing wake animation
+MMM-VoskHotword.js:61 MMM-VoskHotword received notification: ASSISTANT_LISTENING from MMM-AssistantMk2
+MMM-AssistantMk2.js:250  Using requested profile: 
+MMM-AssistantMk2.js:257 📋 Profile config: Object
+MMM-AssistantMk2.js:298 Hook: Array(0)
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: ASSISTANT_DEACTIVATED
+MMM-WakeAnimation.js:71 Hiding wake animation
+MMM-VoskHotword.js:61 MMM-VoskHotword received notification: ASSISTANT_DEACTIVATED from MMM-AssistantMk2
+MMM-VoskHotword.js:15 === MMM-VoskHotword socketNotificationReceived ===
+MMM-VoskHotword.js:16 Payload: Object
+MMM-VoskHotword.js:19 🎯 Hotword detected: mirror mirror
+MMM-VoskHotword.js:20 Full transcript: mirror mirror how are you today
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: HOTWORD_DETECTED
+MMM-WakeAnimation.js:54 Showing wake animation
+MMM-VoskHotword.js:29 Sending TEXT query to Assistant: how are you today
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: ASSISTANT_ACTIVATE
+MMM-AssistantMk2.js:245 *** 4. ASSISTANT_ACTIVATE received: Object
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: ASSISTANT_LISTENING
+MMM-WakeAnimation.js:54 Showing wake animation
+MMM-VoskHotword.js:61 MMM-VoskHotword received notification: ASSISTANT_LISTENING from MMM-AssistantMk2
+MMM-AssistantMk2.js:250  Using requested profile: 
+MMM-AssistantMk2.js:257 📋 Profile config: Object
+temp_screen.html:135 Key:fcmApiKey not found in AssistantCardUiConfig.
+temp_screen.html:135 Key:fcmSecret not found in AssistantCardUiConfig.
+temp_screen.html:135 Key:send_keydown_event_to_client not found in AssistantCardUiConfig.
+MMM-WakeAnimation.js:71 Hiding wake animation
+MMM-AssistantMk2.js:298 Hook: Array(0)
+MMM-WakeAnimation.js:36 MMM-WakeAnimation received: ASSISTANT_DEACTIVATED
+MMM-WakeAnimation.js:71 Hiding wake animation
+MMM-VoskHotword.js:61 MMM-VoskHotword received notification: ASSISTANT_DEACTIVATED from MMM-AssistantMk2
+MMM-VoskHotword.js:15 === MMM-VoskHotword socketNotificationReceived ===
+MMM-VoskHotword.js:16 Payload: Object
 MMM-VoskHotword.js:19 🎯 Hotword detected: mirror mirror
 MMM-VoskHotword.js:20 Full transcript: mirror mirror
 MMM-WakeAnimation.js:36 MMM-WakeAnimation received: HOTWORD_DETECTED
@@ -106,105 +145,11 @@ MMM-WakeAnimation.js:54 Showing wake animation
 MMM-VoskHotword.js:38 No query found, just hotword. Not activating Assistant.
 MMM-WakeAnimation.js:71 Hiding wake animation
 MMM-VoskHotword.js:15 === MMM-VoskHotword socketNotificationReceived ===
-MMM-VoskHotword.js:16 Payload: {hotword: 'mirror mirror', transcript: 'mirror mirror the weather', source: 'pi_zero_2w', timestamp: 1772376139.952993}
-MMM-VoskHotword.js:19 🎯 Hotword detected: mirror mirror
-MMM-VoskHotword.js:20 Full transcript: mirror mirror the weather
+MMM-VoskHotword.js:16 Payload: Object
+MMM-VoskHotword.js:19 🎯 Hotword detected: hey mirror
+MMM-VoskHotword.js:20 Full transcript: hey mirror
 MMM-WakeAnimation.js:36 MMM-WakeAnimation received: HOTWORD_DETECTED
 MMM-WakeAnimation.js:54 Showing wake animation
-MMM-VoskHotword.js:29 Sending TEXT query to Assistant: the weather
-MMM-WakeAnimation.js:36 MMM-WakeAnimation received: ASSISTANT_ACTIVATE
-MMM-AssistantMk2.js:243 *** 4. ASSISTANT_ACTIVATE received: {type: 'TEXT', profile: 'default', key: 'the weather'}
-MMM-WakeAnimation.js:36 MMM-WakeAnimation received: ASSISTANT_LISTENING
-MMM-WakeAnimation.js:54 Showing wake animation
-MMM-VoskHotword.js:61 MMM-VoskHotword received notification: ASSISTANT_LISTENING from MMM-AssistantMk2
-MMM-AssistantMk2.js:248  Using requested profile: 
-MMM-AssistantMk2.js:255 📋 Profile config: {profileFile: 'default.json', lang: 'en-US'}
-MMM-AssistantMk2.js:219 Uncaught (in promise) TypeError: Cannot read properties of null (reading 'stopVideo')
-    at Class.hideVideo (MMM-AssistantMk2.js:219:12)
-    at Class.socketNotificationReceived (MMM-AssistantMk2.js:278:10)
-    at module.js:232:9
-    at Socket.<anonymous> (socketclient.js:56:4)
-    at Emitter.emit (index.js:136:20)
-    at Socket.emitEvent (socket.js:552:20)
-    at Socket.onevent (socket.js:539:18)
-    at MMSocket.socket.onevent (socketclient.js:48:11)
-    at Socket.onpacket (socket.js:507:22)
-    at Emitter.emit (index.js:136:20)
-hideVideo @ MMM-AssistantMk2.js:219
-socketNotificationReceived @ MMM-AssistantMk2.js:278
-(anonymous) @ module.js:232
-(anonymous) @ socketclient.js:56
-Emitter.emit @ index.js:136
-emitEvent @ socket.js:552
-onevent @ socket.js:539
-MMSocket.socket.onevent @ socketclient.js:48
-onpacket @ socket.js:507
-Emitter.emit @ index.js:136
-(anonymous) @ manager.js:217
-Promise.then (async)
-(anonymous) @ globals.js:4
-ondecoded @ manager.js:216
-Emitter.emit @ index.js:136
-add @ index.js:142
-ondata @ manager.js:203
-Emitter.emit @ index.js:136
-_onPacket @ socket.js:259
-Emitter.emit @ index.js:136
-onPacket @ transport.js:99
-onData @ transport.js:91
-ws.onmessage @ websocket.js:48
-MMM-VoskHotword.js:15 === MMM-VoskHotword socketNotificationReceived ===
-MMM-VoskHotword.js:16 Payload: {hotword: 'mirror mirror', transcript: 'mirror mirror what the weather', source: 'pi_zero_2w', timestamp: 1772376149.3997083}
-MMM-VoskHotword.js:19 🎯 Hotword detected: mirror mirror
-MMM-VoskHotword.js:20 Full transcript: mirror mirror what the weather
-MMM-WakeAnimation.js:36 MMM-WakeAnimation received: HOTWORD_DETECTED
-MMM-WakeAnimation.js:54 Showing wake animation
-MMM-VoskHotword.js:29 Sending TEXT query to Assistant: what the weather
-MMM-WakeAnimation.js:36 MMM-WakeAnimation received: ASSISTANT_ACTIVATE
-MMM-AssistantMk2.js:243 *** 4. ASSISTANT_ACTIVATE received: {type: 'TEXT', profile: 'default', key: 'what the weather'}
-MMM-WakeAnimation.js:36 MMM-WakeAnimation received: ASSISTANT_LISTENING
-MMM-WakeAnimation.js:54 Showing wake animation
-MMM-VoskHotword.js:61 MMM-VoskHotword received notification: ASSISTANT_LISTENING from MMM-AssistantMk2
-MMM-AssistantMk2.js:248  Using requested profile: 
-MMM-AssistantMk2.js:255 📋 Profile config: {profileFile: 'default.json', lang: 'en-US'}
-MMM-AssistantMk2.js:219 Uncaught (in promise) TypeError: Cannot read properties of null (reading 'stopVideo')
-    at Class.hideVideo (MMM-AssistantMk2.js:219:12)
-    at Class.socketNotificationReceived (MMM-AssistantMk2.js:278:10)
-    at module.js:232:9
-    at Socket.<anonymous> (socketclient.js:56:4)
-    at Emitter.emit (index.js:136:20)
-    at Socket.emitEvent (socket.js:552:20)
-    at Socket.onevent (socket.js:539:18)
-    at MMSocket.socket.onevent (socketclient.js:48:11)
-    at Socket.onpacket (socket.js:507:22)
-    at Emitter.emit (index.js:136:20)
-hideVideo @ MMM-AssistantMk2.js:219
-socketNotificationReceived @ MMM-AssistantMk2.js:278
-(anonymous) @ module.js:232
-(anonymous) @ socketclient.js:56
-Emitter.emit @ index.js:136
-emitEvent @ socket.js:552
-onevent @ socket.js:539
-MMSocket.socket.onevent @ socketclient.js:48
-onpacket @ socket.js:507
-Emitter.emit @ index.js:136
-(anonymous) @ manager.js:217
-Promise.then (async)
-(anonymous) @ globals.js:4
-ondecoded @ manager.js:216
-Emitter.emit @ index.js:136
-add @ index.js:142
-ondata @ manager.js:203
-Emitter.emit @ index.js:136
-_onPacket @ socket.js:259
-Emitter.emit @ index.js:136
-onPacket @ transport.js:99
-onData @ transport.js:91
-ws.onmessage @ websocket.js:48
+MMM-VoskHotword.js:38 No query found, just hotword. Not activating Assistant.
 MMM-WakeAnimation.js:71 Hiding wake animation
-MMM-WakeAnimation.js:36 MMM-WakeAnimation received: ASSISTANT_DEACTIVATED
-MMM-WakeAnimation.js:71 Hiding wake animation
-MMM-VoskHotword.js:61 MMM-VoskHotword received notification: ASSISTANT_DEACTIVATED from MMM-AssistantMk2
-MMM-WakeAnimation.js:36 MMM-WakeAnimation received: ASSISTANT_DEACTIVATED
-MMM-WakeAnimation.js:71 Hiding wake animation
-MMM-VoskHotword.js:61 MMM-VoskHotword received notification: ASSISTANT_DEACTIVATED from MMM-AssistantMk2
+localhost/:1 Refused to apply style from 'http://localhost:8080/css/custom.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled.
