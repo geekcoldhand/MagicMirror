@@ -1,7 +1,7 @@
 Module.register("MMM-WakeAnimation", {
 	defaults: {
 		animationSpeed: 1000,
-		gifUrl: "modules/MMM-WakeAnimation/public/mirror.gif",
+		gifUrl: "modules/MMM-WakeAnimation/public/guyFawkes.png",
 		showOnWake: true,
 		displayTime: 7000 // 3 sec
 	},
