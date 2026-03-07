@@ -20,8 +20,8 @@
 }
 
 .mirror-gif {
-  max-width: 19rem;
-  max-height: 19rem;
+  max-width: 100vw;
+  max-height: 100vh;
   width: auto;
   height: auto;
 }
