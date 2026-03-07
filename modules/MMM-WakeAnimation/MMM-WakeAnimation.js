@@ -1,7 +1,7 @@
 Module.register("MMM-WakeAnimation", {
 	defaults: {
 		animationSpeed: 1000,
-		gifUrl: "modules/MMM-WakeAnimation/public/guyFawkes.png",
+		gifUrl: "modules/MMM-WakeAnimation/public/guyMask.gif",
 		showOnWake: true,
 		displayTime: 7000 // 3 sec
 	},
@@ -21,7 +21,8 @@ Module.register("MMM-WakeAnimation", {
 		}
 
 		const img = document.createElement("img");
-		img.src = this.config.gifUrl;
+		//img.src = this.config.gifUrl;
+		img.src = this.defaults.gifUrl;
 		img.className = "wake-animation-gif";
 
 		wrapper.appendChild(img);
