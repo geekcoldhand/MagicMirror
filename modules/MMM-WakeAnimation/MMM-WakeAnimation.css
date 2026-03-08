@@ -20,10 +20,10 @@
 }
 
 .wake-animation-gif {
-  max-width: 100vw;
-  max-height: 100vh;
   width: auto;
   height: auto;
+  max-width: 100vw;
+  max-height: 100vh;
 }
 
 .listening-text {
