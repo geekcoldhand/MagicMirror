@@ -2,7 +2,7 @@ import json
 import queue
 import sys
 import time
-import requests
+import socketio
 import sounddevice as sd
 import numpy as np
 from scipy.signal import resample_poly
@@ -12,8 +12,8 @@ from vosk import Model, KaldiRecognizer
 # CONFIGURATION
 # ============================================================================
 
-MAIN_PI_URL = "http://192.168.1.90:3000/vosk-hotword"
-BEARER_TOKEN = "xxx"
+MAIN_PI_URL = "http://192.168.1.90:3000/"
+# BEARER_TOKEN = "xxx"
 HOTWORDS = ["mirror mirror", "hey mirror", "thy face", "ok computer"]
 
 INPUT_SAMPLE_RATE = 48000
@@ -44,34 +44,43 @@ def audio_callback(indata, frames, time_info, status):
         pass
 
 # ============================================================================
-# HOTWORD DETECTION WITH QUERY COLLECTION
+#   MAGIC MIRROR SOCKET
 # ============================================================================
+# Socket connection - established once at startup
+sio = socketio.Client(reconnection=True, reconnection_attempts=0)
+
+@sio.event
+def connect():
+    print("✓ Connected to MagicMirror")
+
+@sio.event
+def disconnect():
+    print("✗ Disconnected from MagicMirror - will reconnect")
+
+def connect_socket():
+    try:
+        sio.connect(MAIN_PI_URL)
+    except Exception as e:
+        print(f"✗ Connection failed: {e}")
 
 def send_hotword_detection(hotword, full_transcript, query):
-    """Send hotword + query to main Pi"""
     try:
-        payload = {
+        sio.emit("HOTWORD_DETECTED", {
             "hotword": hotword,
             "transcript": full_transcript,
             "query": query,
             "source": SOURCE_ID,
             "timestamp": time.time()
-        }
-        
-        headers = {
-            "Authorization": f"Bearer {BEARER_TOKEN}",
-            "Content-Type": "application/json"
-        }
-        
-        response = requests.post(MAIN_PI_URL, json=payload, headers=headers, timeout=5)
-        
-        if response.status_code == 200:
-            print(f"✓ Sent: hotword='{hotword}', query='{query}'")
-        else:
-            print(f"✗ Main Pi returned status {response.status_code}")
-            
-    except requests.exceptions.RequestException as e:
+        })
+        print(f"✓ Sent: hotword='{hotword}', query='{query}'")
+    except Exception as e:
         print(f"✗ Failed to send: {e}")
+
+# ============================================================================
+# HOTWORD DETECTION WITH QUERY COLLECTION
+# ============================================================================
+
+
 
 def contains_hotword(text):
     """Check if text contains any configured hotword"""
@@ -160,8 +169,11 @@ def main():
     print("Vosk Hotword Detector - Raspberry Pi Zero 2 W")
     print("=" * 60)
     
+    # Connect to main Pi
+    connect_socket()
+
     # Load model
-    print(f"Loading model from {MODEL_PATH}...")
+   # print(f"Loading model from {MODEL_PATH}...")
     try:
         model = Model(MODEL_PATH)
         print("✓ Model loaded")
@@ -172,10 +184,10 @@ def main():
     recognizer = KaldiRecognizer(model, VOSK_SAMPLE_RATE)
     recognizer.SetWords(True)
     
-    print(f"Listening for hotwords: {', '.join(HOTWORDS)}")
-    print(f"Main Pi endpoint: {MAIN_PI_URL}")
-    print(f"Query collection timeout: {COLLECTION_TIMEOUT}s")
-    print("-" * 60)
+    # print(f"Listening for hotwords: {', '.join(HOTWORDS)}")
+    # print(f"Main Pi endpoint: {MAIN_PI_URL}")
+    # print(f"Query collection timeout: {COLLECTION_TIMEOUT}s")
+    # print("-" * 60)
     
     # Show audio devices
     devices = sd.query_devices()
@@ -243,6 +255,7 @@ def main():
                             print()
                             
     except KeyboardInterrupt:
+        sio.disconnect()
         print("\n\nShutting down...")
     except Exception as e:
         print(f"\n✗ Error: {e}")
